@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal - CEIGRAS</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-content">
+      <div class="topbar-left">
+        Universidad Nacional Toribio Rodríguez de Mendoza de Amazonas
+      </div>
+
+      <div class="topbar-right">
+        <a href="https://web.facebook.com/untrm.a/?_rdc=1&_rdr" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com/untrmamazonas/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://x.com/untrm" target="_blank" rel="noopener noreferrer" aria-label="X">
+          <i class="fab fa-x-twitter"></i>
+        </a>
+        <a href="https://www.youtube.com/@untrm" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+          <i class="fab fa-youtube"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container header-content">
+      <img
+        src="https://plantbreeding.untrm.edu.pe/wp-content/uploads/2025/05/Logo_PGMG.png"
+        alt="Logo CEIGRAS"
+        class="logo"
+      >
+
+      <nav class="navbar">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="quienes-somos.html">Quienes Somos</a></li>
+          <li><a href="personal.html" class="active">Personal</a></li>
+          <li><a href="eventos.html">Eventos</a></li>
+          <li><a href="publicaciones.html">Publicaciones</a></li>
+          <li><a href="germoplasma.html">Germoplasma</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO DE PÁGINA -->
+  <section class="page-hero">
+    <div class="container">
+      <h1>Personal del programa</h1>
+      <p>
+        El CEIGRAS reúne especialistas en investigación, innovación y desarrollo agrícola.
+        Haz clic en las fotos para conocer más sobre el personal.
+      </p>
+    </div>
+  </section>
+
+  <!-- INVESTIGADORES -->
+  <section class="team-section">
+    <div class="container">
+      <h2>Investigadores</h2>
+
+      <div class="team-grid">
+
+        <div class="team-card"
+          onclick="openModal(
+            'Flavio Lozano Isla',
+            'https://plantbreeding.untrm.edu.pe/wp-content/uploads/2025/06/Flavio-Lozano-Isla-pgmg.jpg',
+            'Ingeniero agrónomo especializado en ecofisiología y mejoramiento genético de plantas. Investigador con experiencia en ciencia de datos y bioinformática, orientado al estudio de la diversidad genética y al desarrollo de proyectos de investigación aplicada en cultivos andinos y especies de importancia agraria.'
+          )">
+          <img src="https://plantbreeding.untrm.edu.pe/wp-content/uploads/2025/06/Flavio-Lozano-Isla-pgmg.jpg" alt="Flavio Lozano Isla">
+          <p>Flavio Lozano Isla</p>
+        </div>
+
+        <div class="team-card"
+          onclick="openModal(
+            'Carlos I. Arbizu Berrocal',
+            'https://plantbreeding.untrm.edu.pe/wp-content/uploads/2025/06/Team.jpg',
+            'Investigador vinculado al estudio de recursos genéticos, mejoramiento de cultivos y conservación de biodiversidad agrícola. Participa en iniciativas orientadas al fortalecimiento de la sostenibilidad productiva y la innovación científica.'
+          )">
+          <img src="https://plantbreeding.untrm.edu.pe/wp-content/uploads/2025/06/Team.jpg" alt="Carlos I. Arbizu Berrocal">
+          <p>Carlos I. Arbizu Berrocal</p>
+        </div>
+
+        <div class="team-card"
+          onclick="openModal(
+            'Jorge A. Condori Apfata',
+            'https://plantbreeding.untrm.edu.pe/wp-content/uploads/2025/06/Team.jpg',
+            'Especialista en investigación agraria con interés en innovación tecnológica, caracterización de germoplasma y fortalecimiento de capacidades científicas orientadas al desarrollo del sector agrícola.'
+          )">
+          <img src="https://plantbreeding.untrm.edu.pe/wp-content/uploads/2025/06/Team.jpg" alt="Jorge A. Condori Apfata">
+          <p>Jorge A. Condori Apfata</p>
+        </div>
+
+        <div class="team-card"
+          onclick="openModal(
+            'Juan C. Guerrero Abad',
+            'https://plantbreeding.untrm.edu.pe/wp-content/uploads/2025/06/Team.jpg',
+            'Docente e investigador con experiencia en temas de innovación, sostenibilidad agrícola y articulación entre investigación académica y desarrollo productivo regional.'
+          )">
+          <img src="https://plantbreeding.untrm.edu.pe/wp-content/uploads/2025/06/Team.jpg" alt="Juan C. Guerrero Abad">
+          <p>Juan C. Guerrero Abad</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TESISTAS -->
+  <section class="team-section team-section-alt">
+    <div class="container">
+      <h2>Tesistas</h2>
+
+      <div class="team-grid">
+
+        <div class="team-card"
+          onclick="openModal(
+            'Tesista 1',
+            'https://plantbreeding.untrm.edu.pe/wp-content/uploads/2025/06/Frijol-5.jpg',
+            'Tesista vinculado a proyectos de investigación en granos y semillas, participando en actividades de caracterización, evaluación y análisis de especies de interés agrícola.'
+          )">
+          <img src="https://plantbreeding.untrm.edu.pe/wp-content/uploads/2025/06/Frijol-5.jpg" alt="Tesista 1">
+          <p>Tesista 1</p>
+        </div>
+
+        <div class="team-card"
+          onclick="openModal(
+            'Tesista 2',
+            'https://plantbreeding.untrm.edu.pe/wp-content/uploads/2025/06/Frijol-5.jpg',
+            'Tesista enfocado en el desarrollo de actividades de investigación aplicada, procesamiento de datos y apoyo técnico en ensayos relacionados con recursos genéticos y mejoramiento de cultivos.'
+          )">
+          <img src="https://plantbreeding.untrm.edu.pe/wp-content/uploads/2025/06/Frijol-5.jpg" alt="Tesista 2">
+          <p>Tesista 2</p>
+        </div>
+
+        <div class="team-card"
+          onclick="openModal(
+            'Tesista 3',
+            'https://plantbreeding.untrm.edu.pe/wp-content/uploads/2025/06/Frijol-5.jpg',
+            'Tesista en formación con participación en actividades de campo y laboratorio, aportando al análisis de materiales vegetales y a la generación de información científica.'
+          )">
+          <img src="https://plantbreeding.untrm.edu.pe/wp-content/uploads/2025/06/Frijol-5.jpg" alt="Tesista 3">
+          <p>Tesista 3</p>
+        </div>
+
+        <div class="team-card"
+          onclick="openModal(
+            'Tesista 4',
+            'https://plantbreeding.untrm.edu.pe/wp-content/uploads/2025/06/Frijol-5.jpg',
+            'Tesista comprometido con la investigación universitaria y el fortalecimiento de capacidades en genética, producción agrícola y sostenibilidad.'
+          )">
+          <img src="https://plantbreeding.untrm.edu.pe/wp-content/uploads/2025/06/Frijol-5.jpg" alt="Tesista 4">
+          <p>Tesista 4</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL -->
+  <div id="modal" class="modal" onclick="closeModalOutside(event)">
+    <div class="modal-content">
+      <button class="close" onclick="closeModal()" aria-label="Cerrar">&times;</button>
+
+      <h2 id="modal-title"></h2>
+
+      <div class="modal-divider"></div>
+
+      <div class="modal-body">
+        <img id="modal-img" src="" alt="Perfil del personal">
+
+        <div class="modal-text-box">
+          <h3>Perfil</h3>
+          <p id="modal-text"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-overlay"></div>
+
+    <div class="container footer-content">
+      <div class="footer-top">
+
+        <div class="footer-column">
+          <h4>Explora</h4>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="quienes-somos.html">Quiénes Somos</a></li>
+            <li><a href="personal.html">Personal</a></li>
+            <li><a href="eventos.html">Eventos</a></li>
+            <li><a href="publicaciones.html">Publicaciones</a></li>
+            <li><a href="germoplasma.html">Germoplasma</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Programa</h4>
+          <ul>
+            <li><a href="quienes-somos.html">Acerca de CEIGRAS</a></li>
+            <li><a href="personal.html">Equipo de trabajo</a></li>
+            <li><a href="eventos.html">Actividades y eventos</a></li>
+            <li><a href="publicaciones.html">Producción científica</a></li>
+            <li><a href="germoplasma.html">Banco de germoplasma</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Social</h4>
+          <ul>
+            <li>
+              <a href="https://web.facebook.com/untrm.a/?_rdc=1&_rdr" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-facebook-f"></i> Facebook
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/untrmamazonas/" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-instagram"></i> Instagram
+              </a>
+            </li>
+            <li>
+              <a href="https://x.com/untrm" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-x-twitter"></i> X
+              </a>
+            </li>
+            <li>
+              <a href="https://www.youtube.com/@untrm" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-youtube"></i> YouTube
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Contacto</h4>
+          <ul>
+            <li>
+              <a href="https://www.untrm.edu.pe/" target="_blank" rel="noopener noreferrer">
+                Portal UNTRM <i class="fas fa-arrow-up-right-from-square"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.google.com/maps/place/Universidad+Nacional+Toribio+Rodr%C3%ADguez+de+Mendoza+de+Amazonas/@-6.2335356,-77.85574,17z/data=!3m1!4b1!4m6!3m5!1s0x91b6ab71f5b27271:0xfe42b2de3efad5e6!8m2!3d-6.2335409!4d-77.8531651!16s%2Fg%2F125_c890p?coh=245189&entry=tts&g_ep=EgoyMDI1MDUxMS4wIPu8ASoJLDEwMjExNDU1SAFQAw%3D%3D&skid=b320fc22-ab5b-4687-818e-54b7d80af6f4" target="_blank" rel="noopener noreferrer">
+                Servicios UNTRM <i class="fas fa-arrow-up-right-from-square"></i>
+              </a>
+            </li>
+            <li>
+              <a href="mailto:informes@untrm.edu.pe">
+                Correo UNTRM <i class="fas fa-arrow-up-right-from-square"></i>
+              </a>
+            </li>
+            <li>
+              <a href="tel:(041)477694">
+                Telef. UNTRM <i class="fas fa-arrow-up-right-from-square"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-bottom">
+        <div class="footer-logo">
+          <img src="https://plantbreeding.untrm.edu.pe/wp-content/uploads/2025/05/logo_PGMG_blanco.png" alt="Logo UNTRM">
+        </div>
+
+        <div class="footer-copy">
+          © 2026 UNTRM. Todos los derechos reservados
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function openModal(nombre, img, texto) {
+      document.getElementById("modal").style.display = "flex";
+      document.getElementById("modal-title").innerText = nombre;
+      document.getElementById("modal-img").src = img;
+      document.getElementById("modal-img").alt = nombre;
+      document.getElementById("modal-text").innerText = texto;
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+
+    function closeModalOutside(event) {
+      if (event.target.id === "modal") {
+        closeModal();
+      }
+    }
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        closeModal();
+      }
+    });
+  </script>
+
+</body>
+</html>
