@@ -302,5 +302,24 @@
     });
   </script>
 
+<script>
+  function openModal(nombre, imagen, descripcion) {
+    document.getElementById("modal-title").innerText = nombre;
+    document.getElementById("modal-img").src = imagen;
+    document.getElementById("modal-text").innerText = descripcion;
+
+    document.getElementById("modal").style.display = "flex";
+  }
+
+  function closeModal() {
+    document.getElementById("modal").style.display = "none";
+  }
+
+  function closeModalOutside(e) {
+    if (e.target.id === "modal") {
+      closeModal();
+    }
+  }
+</script>
 </body>
 </html>
