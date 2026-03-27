@@ -1543,3 +1543,126 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+.social-links a {
+  text-decoration: none;
+  margin-right: 10px;
+  font-size: 22px;
+  display: inline-block;
+}
+
+.social-links a i {
+  vertical-align: middle;
+}
+
+.team-card p {
+  margin-top: 10px;
+  font-weight: 600;
+  color: #163a63;
+}
+
+.team-card img {
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.team-card img:hover {
+  transform: scale(1.05);
+}
+
+.social-links a {
+  font-size: 26px;
+  margin: 0 8px;
+  text-decoration: none;
+}
+
+/* Colores */
+.google {
+  color: #4285F4;
+}
+
+.github {
+  color: #181717;
+}
+
+
+.journal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+@media (max-width: 992px) {
+  .journal-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .journal-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.journal-image {
+  width: 100%;
+  max-height: 300px;
+  height: auto;
+  display: block;
+  border-radius: 18px;
+}
+
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  justify-items: center;
+}
+
+.team-card {
+  text-align: center;
+}
+
+.team-card img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.team-card p {
+  margin-top: 10px;
+  font-weight: 600;
+  color: #163a63;
+}
+
+.social-links {
+  margin-top: 8px;
+}
+
+.social-links a {
+  font-size: 26px;
+  margin: 0 8px;
+  text-decoration: none;
+}
+
+.google {
+  color: #4285F4;
+}
+
+.github {
+  color: #181717;
+}
+
+@media (max-width: 900px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -53,117 +53,183 @@
     </div>
   </header>
 
-  <section class="page-hero">
-    <div class="container">
-      <h1>Publicaciones</h1>
-      <p>
-        Consulta artículos, revistas, boletines y materiales de divulgación científica vinculados a CEIGRAS y la UNTRM.
-      </p>
-    </div>
-  </section>
+ <section class="page-hero">
+  <div class="container">
+    <h1>Publicaciones</h1>
+    <p>
+      Consulta artículos, revistas, boletines y materiales de divulgación científica vinculados a CEIGRAS y la UNTRM.
+    </p>
+  </div>
+</section>
 
-  <section class="journal-section">
-    <div class="container">
-      <div class="journal-grid">
+<section class="journal-section">
+  <div class="container">
+    <div class="journal-grid" id="publications-grid"></div>
+  </div>
+</section>
+<script>
+  const SHEET_ID = "1wruOysAqRKvsWfm0AI0NINHRfSaNwC_ZDoEhJT_2jBo";
+  const SHEET_NAME = "publications";
 
-        <!-- TARJETA 1 -->
-        <article class="journal-card">
-          <div class="journal-image-wrap">
-            <img
-              src="https://www.mdpi.com/plants/plants-14-03689/article_deploy/html/images/plants-14-03689-g003.png"
-              alt="Publicación 1"
-              class="journal-image"
-            >
+  const MONTHS = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
+  const MONTH_MAP = {
+    ene: 0, feb: 1, mar: 2, abr: 3, may: 4, jun: 5,
+    jul: 6, ago: 7, sep: 8, oct: 9, nov: 10, dic: 11
+  };
 
-            <span class="journal-tag">Plants</span>
+  function parseDate(value) {
+    if (!value) return new Date(0);
 
-            <div class="journal-date-box">
-              <span class="month">DIC</span>
-              <span class="day">04</span>
-              <span class="year">2025</span>
-            </div>
+    const text = String(value).trim().toLowerCase();
+
+    // nov-27-2025 / dic-04-2025 / ene-01-2026
+    let parts = text.split("-");
+    if (parts.length === 3 && MONTH_MAP[parts[0]] !== undefined) {
+      return new Date(
+        parseInt(parts[2], 10),
+        MONTH_MAP[parts[0]],
+        parseInt(parts[1], 10)
+      );
+    }
+
+    // 2026-01-01
+    const isoMatch = text.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (isoMatch) {
+      return new Date(
+        parseInt(isoMatch[1], 10),
+        parseInt(isoMatch[2], 10) - 1,
+        parseInt(isoMatch[3], 10)
+      );
+    }
+
+    // 01/01/2026
+    parts = text.split("/");
+    if (parts.length === 3) {
+      return new Date(
+        parseInt(parts[2], 10),
+        parseInt(parts[1], 10) - 1,
+        parseInt(parts[0], 10)
+      );
+    }
+
+    const d = new Date(text);
+    if (!isNaN(d.getTime())) return d;
+
+    return new Date(0);
+  }
+
+  function formatDate(value) {
+    const d = parseDate(value);
+
+    if (isNaN(d.getTime()) || d.getTime() === 0) {
+      return { month: "", day: "", year: "" };
+    }
+
+    return {
+      month: MONTHS[d.getMonth()],
+      day: String(d.getDate()).padStart(2, "0"),
+      year: String(d.getFullYear())
+    };
+  }
+
+  function cleanValue(cell) {
+    if (!cell) return "";
+    return String(cell.f ?? cell.v ?? "").trim();
+  }
+
+  function buildCard(pub) {
+    const f = formatDate(pub.Publication);
+
+    return `
+      <article class="journal-card">
+        <div class="journal-image-wrap">
+          <img
+            src="${pub.image || ""}"
+            alt="${pub.Short_title || "Publicación"}"
+            class="journal-image"
+          >
+
+          <span class="journal-tag">${pub.Journal || ""}</span>
+
+          <div class="journal-date-box">
+            <span class="month">${f.month}</span>
+            <span class="day">${f.day}</span>
+            <span class="year">${f.year}</span>
           </div>
+        </div>
 
-          <div class="journal-content">
-            <h3>Evaluación agromorfológica identificó accesiones promisorias de quinua adaptadas, productivas y resistentes en ambientes andino-amazónicos.</h3>
+        <div class="journal-content">
+          <h3>${pub.Short_title || ""}</h3>
 
-            <a
-              href="https://doi.org/10.3390/plants14233689"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="journal-btn"
-            >
-              Ver Publicación <span>→</span>
-            </a>
-          </div>
-        </article>
+          <a
+            href="${pub.DOI || "#"}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="journal-btn"
+          >
+            Ver Publicación <span>→</span>
+          </a>
+        </div>
+      </article>
+    `;
+  }
 
-        <!-- TARJETA 2 -->
-        <article class="journal-card">
-          <div class="journal-image-wrap">
-            <img
-              src="https://www.mdpi.com/ijpb/ijpb-16-00135/article_deploy/html/images/ijpb-16-00135-g004.png"
-              alt="Publicación 2"
-              class="journal-image"
-            >
+  async function loadPublications() {
+    const container = document.getElementById("publications-grid");
+    container.innerHTML = "<p>Cargando publicaciones...</p>";
 
-            <span class="journal-tag">Plant Biology</span>
+    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}`;
 
-            <div class="journal-date-box">
-              <span class="month">DIC</span>
-              <span class="day">03</span>
-              <span class="year">2025</span>
-            </div>
-          </div>
+    try {
+      const response = await fetch(url);
+      const text = await response.text();
+      const json = JSON.parse(text.substring(47).slice(0, -2));
 
-          <div class="journal-content">
-            <h3>Análisis bibliométrico evidenció tendencias, liderazgo científico y estrategias sostenibles en frijol frente al estrés.</h3>
+      const headers = json.table.cols.map(col => String(col.label || "").trim());
 
-            <a
-              href="https://doi.org/10.3390/ijpb16040135"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="journal-btn"
-            >
-              Ver Publicación <span>→</span>
-            </a>
-          </div>
-        </article>
+      const rows = json.table.rows.map(row => {
+        const obj = {};
 
-        <!-- TARJETA 3 -->
-        <article class="journal-card">
-          <div class="journal-image-wrap">
-            <img
-              src="https://images-provider.frontiersin.org/api/ipx/f=webp/https://www.frontiersin.org/files/Articles/1717484/xml-images/fmicb-16-1717484-g003.webp"
-              alt="Publicación 3"
-              class="journal-image"
-            >
+        headers.forEach((header, index) => {
+          obj[header] = cleanValue(row.c[index]);
+        });
 
-            <span class="journal-tag">Frontiers</span>
+        return obj;
+      });
 
-            <div class="journal-date-box">
-              <span class="month">NOV</span>
-              <span class="day">27</span>
-              <span class="year">2025</span>
-            </div>
-          </div>
+      console.log("HEADERS:", headers);
+      console.log("ROWS:", rows);
 
-          <div class="journal-content">
-            <h3>Revisión bibliométrica confirmó a Trichoderma como recurso clave para resiliencia en café y cacao.</h3>
+      const normalizedRows = rows.map(item => ({
+        Citation: item["Citation"] || "",
+        Journal: item["Journal"] || "",
+        Publication: item["Publication"] || item["Publication (YYYY-MM-DD)"] || "",
+        Short_title: item["Short_title"] || "",
+        DOI: item["DOI"] || "",
+        image: item["image"] || ""
+      }));
 
-            <a
-              href="https://doi.org/10.3389/fmicb.2025.1717484"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="journal-btn"
-            >
-              Ver Publicación <span>→</span>
-            </a>
-          </div>
-        </article>
+      // Solo exigir lo mínimo necesario
+      const filtered = normalizedRows.filter(item =>
+        item.Short_title && item.DOI
+      );
 
-  </section>
+      filtered.sort((a, b) => parseDate(b.Publication) - parseDate(a.Publication));
 
+      if (!filtered.length) {
+        container.innerHTML = "<p>No hay publicaciones para mostrar.</p>";
+        return;
+      }
+
+      container.innerHTML = filtered.map(buildCard).join("");
+    } catch (error) {
+      console.error("Error cargando publicaciones:", error);
+      container.innerHTML = "<p>No se pudieron cargar las publicaciones.</p>";
+    }
+  }
+
+  loadPublications();
+</script>
 
   <footer class="footer">
     <div class="footer-overlay"></div>

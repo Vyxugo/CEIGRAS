@@ -74,109 +74,133 @@
     </div>
   </section>
 
-  <!-- INVESTIGADORES -->
-  <section class="team-section">
-    <div class="container">
-      <h2>Investigadores</h2>
+<div id="team-sections"></div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const SHEET_ID = "1wruOysAqRKvsWfm0AI0NINHRfSaNwC_ZDoEhJT_2jBo";
+  const SHEET_NAME = "team";
 
-      <div class="team-grid">
+  function clean(cell) {
+    if (!cell) return "";
+    return String(cell.f ?? cell.v ?? "").trim();
+  }
 
-        <div class="team-card"
-          onclick="openModal(
-            'Flavio Lozano Isla',
-            'https://plantbreeding.untrm.edu.pe/wp-content/uploads/2025/06/Flavio-Lozano-Isla-pgmg.jpg',
-            'Ingeniero agrónomo (CIP 213510) especializado en ecofisiología y mejoramiento genético de plantas. Investigador CONCYTEC (P0052830) con experiencia en ciencia de datos y bioinformática. Doctorando en la Universidad de Hohenheim (UHOH), Alemania, investigando la diversidad genética y mejoramiento de quinua para el Altiplano peruano. Maestro en botánica (UFRPE, Brasil) y titulado en ingeniería agrónoma (UNALM, Perú). Exinvestigador en el CIP y docente en UNALM. Actualmente, docente en la UNTRM y coordinador del proyecto CEIGRAS en INDES-CES. Especialista en gestión de investigaciones en INIA (Proyecto CUI N° 2472190).'
-          )">
-          <img src="https://plantbreeding.untrm.edu.pe/wp-content/uploads/2025/06/Flavio-Lozano-Isla-pgmg.jpg" alt="Flavio Lozano Isla">
-          <p>Flavio Lozano Isla</p>
+  function normalizeRole(role) {
+    const text = String(role || "")
+      .trim()
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+
+    if (text.includes("coordinador")) return "Investigadores";
+    if (text.includes("investigador")) return "Investigadores";
+    if (text.includes("tesista")) return "Tesistas";
+    if (text.includes("practicante")) return "Practicantes";
+    if (text.includes("administradora")) return "Administración";
+
+    return "";
+  }
+
+  function buildCard(person) {
+    const nombre = person.nombre || "";
+    const linkedin = person.linkedin || "#";
+    const google = person.googleScholar || "";
+    const github = person.github || "";
+    const foto = person.foto || "https://via.placeholder.com/150";
+
+    return `
+      <div class="team-card">
+        <a href="${linkedin}" target="_blank" rel="noopener noreferrer">
+          <img src="${foto}" alt="${nombre}">
+        </a>
+        <p>${nombre}</p>
+        <div class="social-links">
+          ${google ? `<a href="${google}" class="google" target="_blank" rel="noopener noreferrer"><i class="fas fa-graduation-cap"></i></a>` : ""}
+          ${github ? `<a href="${github}" class="github" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>` : ""}
         </div>
-
-        <div class="team-card"
-          onclick="openModal(
-            'Wagner Meza Maicelo',
-            'https://plantbreeding.untrm.edu.pe/wp-content/uploads/2025/06/Wagner-Meza-Maicelo-pgmg.jpg',
-            'Ingeniero agrónomo por la Universidad Nacional Toribio Rodríguez de Mendoza de Amazonas (UNTRM-A) e investigador registrado en CONCYTEC (P0376160). Cuenta con experiencia en el uso de organismos biológicos en cacao y caña de azúcar, y en el manejo agronómico de frijol común y quinua. Actualmente cursa una maestría en la UNTRM-A, donde investiga la interacción entre hongos micorrízicos arbusculares y plantas, y apoya en investigación en el proyecto CEIGRAS del INDES-CES.'
-          )">
-          <img src="https://plantbreeding.untrm.edu.pe/wp-content/uploads/2025/06/Wagner-Meza-Maicelo-pgmg.jpg" alt="Wagner Meza Maicelo">
-          <p>Wagner Meza Maicelo</p>
-        </div>
-
-        <div class="team-card"
-          onclick="openModal(
-            'Victor-Hugo Baldera-Chapoñan ',
-            'https://plantbreeding.untrm.edu.pe/wp-content/uploads/2025/06/Victor-H.-Baldera-Chaponan-pgmg.jpg',
-            'Egresado de la carrera de Ingeniería Agrónoma por la Universidad Nacional Toribio Rodríguez de Mendoza de Amazonas (UNTRM). Cuento con experiencia en investigación científica, análisis y procesamiento de datos, así como en liderazgo y representación estudiantil. Poseo competencias en análisis estadístico utilizando el software R, diseño de interfaces web y desarrollo de herramientas aplicadas a la investigación, destacando el sistema Huito para la generación de etiquetas personalizadas. Asimismo, tengo habilidades en recolección de datos en campo, comunicación científica, participación activa en espacios de gestión y representación universitaria, y experiencia en el manejo de cultivos de granos y leguminosas como quinua, frijol, arroz y maíz.'
-          )">
-          <img src="https://plantbreeding.untrm.edu.pe/wp-content/uploads/2025/06/Victor-H.-Baldera-Chaponan-pgmg.jpg" alt="Victor-Hugo Baldera-Chapoñan ">
-          <p>Victor-Hugo Baldera-Chapoñan </p>
-        </div>
-
-        <div class="team-card"
-          onclick="openModal(
-            'Amelia M. Menacho Mattos',
-            'https://raw.githubusercontent.com/EOCT-234/Practicas_2026/refs/heads/main/CEIGRAS_archivos/fotos/investigadora.jpg',
-            'Bióloga por la Universidad Peruana Cayetano Heredia, con enfoque en genética y mejoramiento de especies forestales. Cuenta con experiencia en genómica aplicada, orientada al estudio y caracterización de especies maderables de importancia económica en el Perú, como Ceiba sp.. Con experiencia en técnicas de laboratorio molecular, incluyendo extracción de ADN, control de calidad y análisis de datos genómicos.Participa en proyectos de investigación vinculados al uso de herramientas bioinformáticas para el ensamblaje y análisis de genomas vegetales, así como en estudios de diversidad genética y estructura poblacional. Cuenta con manejo de software especializado en análisis genético y estadístico, así como experiencia en trabajo de campo para la recolección de muestras en diferentes regiones del país.'
-          )">
-          <img src="https://raw.githubusercontent.com/EOCT-234/Practicas_2026/refs/heads/main/CEIGRAS_archivos/fotos/investigadora.jpg" alt="Amelia M. Menacho Mattos ">
-          <p>Amelia M. Menacho Mattos </p>
-        </div>
-
       </div>
-    </div>
-  </section>
+    `;
+  }
 
-  <!-- TESISTAS -->
-  <section class="team-section team-section-alt">
-    <div class="container">
-      <h2>Tesistas</h2>
+  function buildSection(title, people) {
+    if (!people.length) return "";
 
-      <div class="team-grid">
-
-        <div class="team-card"
-          onclick="openModal(
-            'Edgar Orlando Campos Troyes',
-            'https://raw.githubusercontent.com/EOCT-234/Practicas_2026/refs/heads/main/unnamed.jpg'
-,
-            'Estudiante de Ingeniería Agrónoma (IX ciclo) de la Universidad Nacional Toribio Rodríguez de Mendoza de Amazonas (UNTRM), actualmente practicante y tesista en el proyecto CEIGRAS, desarrollando el estudio “Evaluación morfo-agronómica de germoplasma de quinua en condiciones del distrito de Lamud, Amazonas”, con experiencia en manejo y análisis de datos mediante Microsoft Excel y R, destacando por mi capacidad analítica, trabajo en equipo y compromiso con la investigación orientada al aprovechamiento sostenible de los recursos agrícolas.'
-          )">
-          <img src="https://raw.githubusercontent.com/EOCT-234/Practicas_2026/refs/heads/main/unnamed.jpg" alt="Edgar Orlando Campos Troyes">
-          <p>Edgar Orlando Campos Troyes</p>
+    return `
+      <section class="team-section">
+        <div class="container">
+          <h2>${title}</h2>
+          <div class="team-grid">
+            ${people.map(buildCard).join("")}
+          </div>
         </div>
+      </section>
+    `;
+  }
 
-        <div class="team-card"
-          onclick="openModal(
-            'Hermes Galoc Valqui',
-            'https://raw.githubusercontent.com/EOCT-234/Practicas_2026/refs/heads/main/Hermes.jpg',
-            'Estudiante de Ingeniería Agrónoma del IX ciclo en la Universidad Nacional Toribio Rodríguez de Mendoza de Amazonas, con participación como tesista en CEIGRAS, desarrollando investigación sobre el comportamiento agronómico de accesiones de Chenopodium quinoa asociadas con Phaseolus vulgaris bajo diferentes distanciamientos de siembra en Lonya Chico, provincia de Luya, Amazonas. Poseo experiencia en organización y análisis de datos experimentales mediante Microsoft Excel y conocimientos básicos de R, además de responsabilidad, disposición para el trabajo en equipo y motivación por contribuir al desarrollo de una agricultura sostenible'
-          )">
-          <img src="https://raw.githubusercontent.com/EOCT-234/Practicas_2026/refs/heads/main/Hermes.jpg" alt="Hermes Galoc Valqui">
-          <p>Hermes Galoc Valqui</p>
-        </div>
+  async function loadTeam() {
+    const container = document.getElementById("team-sections");
 
-        <div class="team-card"
-          onclick="openModal(
-            'Lalangui Peña Jefferson Ivan de Galoc Valqui',
-            'https://plantbreeding.untrm.edu.pe/wp-content/uploads/2025/06/Frijol-5.jpg',
-            'Estudiante de la Escuela Profesional de Ingeniería Agrónoma del IX ciclo en la Universidad Nacional Toribio Rodríguez de Mendoza de Amazonas, actualmente vinculado como tesista al proyecto CEIGRAS, donde desarrollo la investigación titulada “Respuesta de tres accesiones de frijol común (Phaseolus vulgaris) a la microdosificación de fertilizantes en el distrito de Lonya Chico, región Amazonas”. Cuento con habilidades en organización, procesamiento e interpretación de datos experimentales utilizando Microsoft Excel y conocimientos básicos de R, además de una actitud responsable, disposición para el trabajo en equipo y compromiso con el desarrollo de investigaciones orientadas a la sostenibilidad agrícola'
-          )">
-          <img src="https://plantbreeding.untrm.edu.pe/wp-content/uploads/2025/06/Frijol-5.jpg" alt="Lalangui Peña Jefferson Ivan de Galoc Valqui">
-          <p>Lalangui Peña Jefferson Ivan de Galoc Valqui</p>
-        </div>
+    if (!container) {
+      console.error("No existe #team-sections");
+      return;
+    }
 
-        <div class="team-card"
-          onclick="openModal(
-            'Tesista 4',
-            'https://plantbreeding.untrm.edu.pe/wp-content/uploads/2025/06/Frijol-5.jpg',
-            'Tesista comprometido con la investigación universitaria y el fortalecimiento de capacidades en genética, producción agrícola y sostenibilidad.'
-          )">
-          <img src="https://plantbreeding.untrm.edu.pe/wp-content/uploads/2025/06/Frijol-5.jpg" alt="Tesista 4">
-          <p>Tesista 4</p>
-        </div>
+    container.innerHTML = "<p>Cargando personal...</p>";
 
-      </div>
-    </div>
-  </section>
+    try {
+      const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}`;
+      const response = await fetch(url);
+      const text = await response.text();
 
+      const match = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\);/);
+      if (!match) {
+        throw new Error("No se pudo leer la respuesta de Google Sheets");
+      }
+
+      const data = JSON.parse(match[1]);
+
+      const people = data.table.rows.map(row => ({
+        nombre: clean(row.c[0]),          // A
+        funcion: clean(row.c[1]),         // B
+        linkedin: clean(row.c[2]),        // C
+        googleScholar: clean(row.c[3]),   // D
+        github: clean(row.c[4]),          // E
+        foto: clean(row.c[5])             // F
+      }))
+      .filter(person => person.nombre && person.funcion);
+
+      const grupos = {
+        "Investigadores": [],
+        "Tesistas": [],
+        "Practicantes": [],
+        "Administración": []
+      };
+
+      people.forEach(person => {
+        const grupo = normalizeRole(person.funcion);
+        if (grupo) {
+          grupos[grupo].push(person);
+        }
+      });
+
+      let html = "";
+      html += buildSection("Investigadores", grupos["Investigadores"]);
+      html += buildSection("Tesistas", grupos["Tesistas"]);
+      html += buildSection("Practicantes", grupos["Practicantes"]);
+      html += buildSection("Administración", grupos["Administración"]);
+
+      container.innerHTML = html || "<p>No hay personal para mostrar.</p>";
+    } catch (error) {
+      console.error("Error cargando personal:", error);
+      container.innerHTML = "<p>No se pudo cargar el personal.</p>";
+    }
+  }
+
+  loadTeam();
+});
+</script>
+
+</section>
   <!-- MODAL -->
   <div id="modal" class="modal" onclick="closeModalOutside(event)">
     <div class="modal-content">
