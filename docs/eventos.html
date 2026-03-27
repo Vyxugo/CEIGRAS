@@ -65,106 +65,173 @@
     </div>
   </section>
 
-  <!-- LISTA DE EVENTOS -->
-  <section class="events-section">
-    <div class="container">
-      <div class="events-grid">
+ <!-- LISTA DE EVENTOS -->
+<section class="events-section">
+  <div class="container">
+    <div class="events-grid" id="events-grid"></div>
+  </div>
+</section>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const SHEET_ID = "1wruOysAqRKvsWfm0AI0NINHRfSaNwC_ZDoEhJT_2jBo";
+  const SHEET_NAME = "events";
 
-        <!-- CARD 1 -->
-        <article class="event-card">
-          <div class="event-image-wrap">
-            <img src="https://scontent.flim1-1.fna.fbcdn.net/v/t39.30808-6/652296163_1016765850678105_3254258815282021000_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeE8Qhwtt5ulkV96BruIUYgiTwqXER6kUOBPCpcRHqRQ4CKy9EV0dK4paLIhf--r5B55MafiZKcJm7nofgqyD-H7&_nc_ohc=qKreN_aRD5gQ7kNvwFYK1FJ&_nc_oc=Adrae7qpl7kTMPJreEALbelXmY8eFjD18hKIoBe3jA_GHMniIxGycL-TeJrNHHzc9Kk&_nc_zt=23&_nc_ht=scontent.flim1-1.fna&_nc_gid=xWvnIMWgeFfFyUmQ0_O8Rw&_nc_ss=7a32e&oh=00_Afwb02w8ZaH7xRQaqQosIxats1h1WOJfOmXDd_YjURw-HQ&oe=69CA1F6E" alt="Evento 1" class="event-image">
+  const MONTHS_SHORT = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
+  const MONTHS_FULL = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
+  const MONTH_MAP = {
+    ene: 0, feb: 1, mar: 2, abr: 3, may: 4, jun: 5,
+    jul: 6, ago: 7, sep: 8, oct: 9, nov: 10, dic: 11
+  };
 
-            <span class="event-tag">EVENTO</span>
+  function clean(cell) {
+    if (!cell) return "";
+    return String(cell.f ?? cell.v ?? "").trim();
+  }
 
-            <div class="event-date-box">
-              <span class="month">MAR</span>
-              <span class="day">16</span>
-              <span class="year">2026</span>
-            </div>
+  function parseDate(value) {
+    if (!value) return new Date(0);
+
+    const text = String(value).trim().toLowerCase();
+
+    let parts = text.split("-");
+    if (parts.length === 3 && MONTH_MAP[parts[0]] !== undefined) {
+      return new Date(
+        parseInt(parts[2], 10),
+        MONTH_MAP[parts[0]],
+        parseInt(parts[1], 10)
+      );
+    }
+
+    const isoMatch = text.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (isoMatch) {
+      return new Date(
+        parseInt(isoMatch[1], 10),
+        parseInt(isoMatch[2], 10) - 1,
+        parseInt(isoMatch[3], 10)
+      );
+    }
+
+    parts = text.split("/");
+    if (parts.length === 3) {
+      return new Date(
+        parseInt(parts[2], 10),
+        parseInt(parts[1], 10) - 1,
+        parseInt(parts[0], 10)
+      );
+    }
+
+    const d = new Date(text);
+    if (!isNaN(d.getTime())) return d;
+
+    return new Date(0);
+  }
+
+  function formatDateParts(value) {
+    const d = parseDate(value);
+
+    if (isNaN(d.getTime()) || d.getTime() === 0) {
+      return {
+        monthBox: "",
+        day: "",
+        year: "",
+        meta: ""
+      };
+    }
+
+    const monthIndex = d.getMonth();
+    const day = String(d.getDate()).padStart(2, "0");
+    const year = d.getFullYear();
+
+    return {
+      monthBox: MONTHS_SHORT[monthIndex],
+      day: day,
+      year: String(year),
+      meta: `${parseInt(day, 10)} ${MONTHS_FULL[monthIndex]} ${year}`
+    };
+  }
+
+  function buildCard(item) {
+    const date = formatDateParts(item.Fecha);
+    const titleParam = encodeURIComponent(item.Title || "");
+
+    return `
+      <article class="event-card">
+        <div class="event-image-wrap">
+          <img src="${item.Image || ""}" alt="${item.Title || "Evento"}" class="event-image">
+
+          <span class="event-tag">${item.Tipo || ""}</span>
+
+          <div class="event-date-box">
+            <span class="month">${date.monthBox}</span>
+            <span class="day">${date.day}</span>
+            <span class="year">${date.year}</span>
+          </div>
+        </div>
+
+        <div class="event-content">
+          <div class="event-meta">
+            <i class="far fa-calendar"></i> ${date.meta}
           </div>
 
-          <div class="event-content">
-            <div class="event-meta">
-              <i class="far fa-calendar"></i> 17 mar 2026
-            </div>
+          <h3>${item.Title || ""}</h3>
 
-            <h3>
-              UNTRM capacita a agricultores de Lonya Chico en producción sostenible de café y diagnóstico de cultivos
-            </h3>
+          <a href="evento-detalle.html?title=${titleParam}" class="event-btn">
+            Leer más <span>→</span>
+          </a>
+        </div>
+      </article>
+    `;
+  }
 
-            <p>
-              Especialistas del Instituto de Investigación para el Desarrollo Sustentable de Ceja de Selva (INDES-CES) de la UNTRM realizaron una jornada de capacitación dirigida a agricultores del distrito de Lonya Chico, provincia de Luya, orientada a fortalecer sus capacidades en la producción sostenible de café, donde se desarrollaron sesiones teóricas y prácticas sobre selección de semillas, germinación, uso de herramientas biotecnológicas y manejo de viveros e invernaderos para optimizar el desarrollo de las plantas.
-            </p>
+  async function loadEvents() {
+    const container = document.getElementById("events-grid");
 
-            <a href="evento-detalle.html" class="event-btn">Leer más <span>→</span></a>
-          </div>
-        </article>
+    if (!container) {
+      console.error("No existe #events-grid");
+      return;
+    }
 
-        <!-- CARD 2 -->
-        <article class="event-card">
-          <div class="event-image-wrap">
-            <img src="https://plantbreeding.untrm.edu.pe/wp-content/uploads/2025/06/Flavio-Lozano-Isla-pgmg.jpg" alt="Evento 2" class="event-image">
+    container.innerHTML = "<p>Cargando eventos...</p>";
 
-            <span class="event-tag">NOTICIAS</span>
+    try {
+      const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}`;
+      const response = await fetch(url);
+      const text = await response.text();
 
-            <div class="event-date-box">
-              <span class="month">MAR</span>
-              <span class="day">20</span>
-              <span class="year">2026</span>
-            </div>
-          </div>
+      const match = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\);/);
+      if (!match) {
+        throw new Error("No se pudo leer la respuesta de Google Sheets");
+      }
 
-          <div class="event-content">
-            <div class="event-meta">
-              <i class="far fa-calendar"></i> 20 mar 2026
-            </div>
+      const data = JSON.parse(match[1]);
 
-            <h3>
-              Resultados de investigación sobre genética del Caballo Peruano de Paso
-            </h3>
+      const events = data.table.rows.map(row => ({
+        Tipo: clean(row.c[0]),        // A
+        Fecha: clean(row.c[1]),       // B
+        Title: clean(row.c[2]),       // C
+        Description: clean(row.c[3]), // D
+        Image: clean(row.c[4])        // E
+      }))
+      .filter(item => item.Tipo && item.Fecha && item.Title && item.Image);
 
-            <p>
-              Presentación de resultados de investigación con enfoque en diversidad genética y caracterización, mostrando avances científicos en el ámbito académico regional.
-            </p>
+      // Más reciente primero
+      events.sort((a, b) => parseDate(b.Fecha) - parseDate(a.Fecha));
 
-            <a href="evento-detalle.html" class="event-btn">Leer más <span>→</span></a>
-          </div>
-        </article>
+      if (!events.length) {
+        container.innerHTML = "<p>No hay eventos para mostrar.</p>";
+        return;
+      }
 
-        <!-- CARD 3 -->
-        <article class="event-card">
-          <div class="event-image-wrap">
-            <img src="https://plantbreeding.untrm.edu.pe/wp-content/uploads/2025/06/Frijol-5.jpg" alt="Evento 3" class="event-image">
+      container.innerHTML = events.map(buildCard).join("");
+    } catch (error) {
+      console.error("Error cargando eventos:", error);
+      container.innerHTML = "<p>No se pudieron cargar los eventos.</p>";
+    }
+  }
 
-            <span class="event-tag">NOTICIAS</span>
-
-            <div class="event-date-box">
-              <span class="month">MAR</span>
-              <span class="day">17</span>
-              <span class="year">2026</span>
-            </div>
-          </div>
-
-          <div class="event-content">
-            <div class="event-meta">
-              <i class="far fa-calendar"></i> 17 mar 2026
-            </div>
-
-            <h3>
-              UNTRM será sede del Innovation Challenge y Laboratorio de Emprendimientos 2026
-            </h3>
-
-            <p>
-              La universidad participará como sede en actividades internacionales orientadas al emprendimiento, la innovación y la articulación académica.
-            </p>
-
-            <a href="evento-detalle.html" class="event-btn">Leer más <span>→</span></a>
-          </div>
-        </article>
-
-      </div>
-    </div>
+  loadEvents();
+});
+</script>
   </section>
   <!-- FOOTER -->
   <footer class="footer">
