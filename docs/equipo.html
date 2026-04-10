@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Personal - CEIGRAS</title>
+  <title>Equipo - CEIGRAS</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" href="https://github.com/Victor-Hugo-Baldera/CEIGRAS/blob/main/docs/image/favico-logo.png?raw=true">
@@ -55,7 +55,7 @@
         <ul>
           <li><a href="index.html">Inicio</a></li>
           <li><a href="quienes-somos.html">Quienes Somos</a></li>
-          <li><a href="personal.html" class="active">Personal</a></li>
+          <li><a href="equipo.html" class="active">Equipo</a></li>
           <li><a href="eventos.html">Eventos</a></li>
           <li><a href="publicaciones.html">Publicaciones</a></li>
           <li><a href="germoplasma.html">Germoplasma</a></li>
@@ -70,7 +70,7 @@
       <h1>EQUIPO CEIGRAS</h1>
       <p>
         El CEIGRAS reúne especialistas en investigación, innovación y desarrollo agrícola.
-        Haz clic en las fotos para conocer más sobre el personal.
+        Haz clic en las fotos para conocer más sobre el equipo.
       </p>
     </div>
   </section>
@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    container.innerHTML = "<p>Cargando personal...</p>";
+    container.innerHTML = "<p>Cargando equipo...</p>";
 
     try {
       const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}`;
@@ -190,10 +190,10 @@ document.addEventListener("DOMContentLoaded", () => {
       html += buildSection("Practicantes", grupos["Practicantes"]);
       html += buildSection("Administración", grupos["Administración"]);
 
-      container.innerHTML = html || "<p>No hay personal para mostrar.</p>";
+      container.innerHTML = html || "<p>No hay equipo para mostrar.</p>";
     } catch (error) {
-      console.error("Error cargando personal:", error);
-      container.innerHTML = "<p>No se pudo cargar el personal.</p>";
+      console.error("Error cargando equipo:", error);
+      container.innerHTML = "<p>No se pudo cargar el equipo.</p>";
     }
   }
 
@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="modal-divider"></div>
 
       <div class="modal-body">
-        <img id="modal-img" src="" alt="Perfil del personal">
+        <img id="modal-img" src="" alt="Perfil del equipo">
 
         <div class="modal-text-box">
           <h3>Perfil</h3>
@@ -234,7 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <ul>
             <li><a href="index.html">Inicio</a></li>
             <li><a href="quienes-somos.html">Quiénes Somos</a></li>
-            <li><a href="personal.html">Personal</a></li>
+            <li><a href="equipo.html">Equipo</a></li>
             <li><a href="eventos.html">Eventos</a></li>
             <li><a href="publicaciones.html">Publicaciones</a></li>
             <li><a href="germoplasma.html">Germoplasma</a></li>
@@ -245,7 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <h4>Programa</h4>
           <ul>
             <li><a href="quienes-somos.html">Acerca de CEIGRAS</a></li>
-            <li><a href="personal.html">Equipo de trabajo</a></li>
+            <li><a href="equipo.html">Equipo de trabajo</a></li>
             <li><a href="eventos.html">Actividades y eventos</a></li>
             <li><a href="publicaciones.html">Producción científica</a></li>
             <li><a href="germoplasma.html">Banco de germoplasma</a></li>
