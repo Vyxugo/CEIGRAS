@@ -46,7 +46,7 @@ if(params$participante == "Nombre del participante") {
     
     output_file <- path(
       output_dir,
-      glue("Certificado{gsub('[^A-Za-z0-9]', '_', nombre)}.pdf")
+      glue("Certificado_{gsub('[^A-Za-z0-9]', '_', nombre)}.pdf")
     )
     
     render(
