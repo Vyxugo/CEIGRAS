@@ -1,0 +1,736 @@
+%PDF-1.4
+%öäüß
+1 0 obj
+<<
+/Type /Catalog
+/Version /1.4
+/Pages 2 0 R
+>>
+endobj
+3 0 obj
+<<
+/Title <5245504F52544520444520435245414349D34E204445204649524D415320454E204C4F5445>
+/Author (ReFirma PDF 1.6)
+/Subject ()
+/Keywords ()
+/Creator (ReFirma PDF 1.6)
+/Producer (ReFirma PDF 1.6)
+>>
+endobj
+2 0 obj
+<<
+/Type /Pages
+/Kids [4 0 R 5 0 R]
+/Count 2
+>>
+endobj
+4 0 obj
+<<
+/Type /Page
+/MediaBox [0.0 0.0 841.8898 595.27563]
+/Parent 2 0 R
+/Contents [6 0 R 7 0 R 8 0 R]
+/Resources 9 0 R
+>>
+endobj
+5 0 obj
+<<
+/Type /Page
+/MediaBox [0.0 0.0 841.8898 595.27563]
+/Parent 2 0 R
+/Contents [10 0 R 11 0 R]
+/Resources 12 0 R
+>>
+endobj
+6 0 obj
+<<
+/Length 212
+>>
+stream
+/F1 8.5 Tf
+BT
+/F2 14 Tf
+0 0.29804 0.6 rg
+280 555.27563 Td
+<5245504F52544520444520435245414349D34E204445204649524D415320454E204C4F5445> Tj
+ET
+BT
+/F2 12 Tf
+0 0.29804 0.6 rg
+380 540.27563 Td
+(ReFirma PDF 1.6) Tj
+ET
+
+endstream
+endobj
+7 0 obj
+<<
+/Length 3361
+>>
+stream
+BT
+/F2 12 Tf
+0 0.50196 1 rg
+32 510.27563 Td
+(Cabecera) Tj
+ET
+/F1 8.5 Tf
+0 0 0 rg
+BT
+/F2 10 Tf
+32 490.31912 Td
+(Dir. origen: ) Tj
+ET
+BT
+/F3 10 Tf
+122 490.31912 Td
+(C:\\Users\\LENOVO\\Documents\\CEIGRAS\\certificados\\02-2026-UNTRM-FICA-CPSECRS-P) Tj
+ET
+BT
+/F2 10 Tf
+32 475.31912 Td
+(Dir. destino: ) Tj
+ET
+BT
+/F3 10 Tf
+122 475.31912 Td
+(C:\\Users\\LENOVO\\Documents\\CEIGRAS\\certificados\\signed) Tj
+ET
+BT
+/F2 10 Tf
+32 460.31912 Td
+(Sobrescribir: ) Tj
+ET
+BT
+/F3 10 Tf
+122 460.31912 Td
+(Si) Tj
+ET
+BT
+/F2 10 Tf
+32 445.31912 Td
+(Fecha: ) Tj
+ET
+BT
+/F3 10 Tf
+122 445.31912 Td
+(28/05/2026 15:40:56-0500) Tj
+ET
+BT
+/F2 10 Tf
+32 430.31912 Td
+(Computador: ) Tj
+ET
+BT
+/F3 10 Tf
+122 430.31912 Td
+(LENOVO:DESKTOP-KMQ612S:10.17.25.61:04E8B9EBB86A) Tj
+ET
+BT
+/F2 10 Tf
+32 415.31912 Td
+(Algoritmo hash: ) Tj
+ET
+BT
+/F3 10 Tf
+122 415.31912 Td
+(SHA256) Tj
+ET
+BT
+/F2 10 Tf
+32 400.31912 Td
+(Nivel de firma: ) Tj
+ET
+BT
+/F3 10 Tf
+122 400.31912 Td
+(PAdES_BASELINE_B) Tj
+ET
+BT
+/F2 10 Tf
+32 385.31912 Td
+(Motivo: ) Tj
+ET
+BT
+/F3 10 Tf
+122 385.31912 Td
+<456E207365F1616C20646520636F6E666F726D69646164> Tj
+ET
+BT
+/F2 10 Tf
+32 370.31912 Td
+(Firmas visibles: ) Tj
+ET
+BT
+/F3 10 Tf
+122 370.31912 Td
+<53ED2C20656E206C61203172612070E167696E61> Tj
+ET
+BT
+/F2 10 Tf
+32 355.31912 Td
+(TSA: ) Tj
+ET
+BT
+/F3 10 Tf
+122 355.31912 Td
+(No) Tj
+ET
+BT
+/F2 10 Tf
+32 340.31912 Td
+<4465636C6172616369F36E3A20> Tj
+ET
+BT
+/F3 10 Tf
+122 340.31912 Td
+13 TL
+(Por la presente declaro: \(1\) ser el titular del certificado digital [CN=LOZANO ISLA Flavio FAU 20479393568) Tj
+T*
+(soft, SERIALNUMBER=PNOPE-70319774, GIVENNAME=Flavio, SURNAME=LOZANO ISLA, OU=20479393568, OU=EREP) Tj
+T*
+(PJ_RENIEC_SOLICITUD:00001273606, OID.2.5.4.97=NTRPE-20479393568, O=UNIVERSIDAD NACIONAL TORIBIO RODRIGUEZ) Tj
+T*
+<4445204D454E444F5A4120444520414D415A4F4E41532C204C3D436861636861706F7961732C2053543D436861636861706F7961732D416D617A6F6E61732C20433D50455D20636F6E204EB0206465207365726965205B36433A35423A37363A46> Tj
+T*
+<3A42453A37343A30393A43413A43433A32335D20656D697469646F20706F72205B434E3D454345502D52454E49454320434120436C61737320332C204F3D526567697374726F204E6163696F6E616C206465204964656E7469666963616369F36E> Tj
+T*
+(y Estado Civil, C=PE], y \(2\) haber inspeccionado y aprobado todos los documentos que se encuentran) Tj
+T*
+(en el directorio C:\\Users\\LENOVO\\Documents\\CEIGRAS\\certificados\\02-2026-UNTRM-FICA-CPSECRS-P. ) Tj
+T*
+() Tj
+T*
+(Al) Tj
+T*
+(escribir la palabra ACEPTO autorizo la firma digital en lote de tales documentos, derivando en ellos) Tj
+T*
+(los efectos legales en concordancia con la Ley 27269, su Reglamento y modificatorias. Asimismo, eximo) Tj
+T*
+(al software ReFirma PDF, al RENIEC y a su personal de cualquier responsabilidad que pudiese ser demandada) Tj
+T*
+(por los efectos de los documentos firmados.) Tj
+ET
+BT
+/F2 10 Tf
+32 160.31912 Td
+(SHA-256: ) Tj
+ET
+BT
+/F3 10 Tf
+122 160.31912 Td
+(31J3cHwYjim2Zh7MVqU6PsTd3LzXJmQzgfF7FQn7Nko=) Tj
+ET
+BT
+/F2 10 Tf
+32 145.31912 Td
+(Firma digital: ) Tj
+ET
+BT
+/F3 10 Tf
+122 145.31912 Td
+13 TL
+(K8UU/Reatw30BTt//uxO1jFft4mQddRU07Ht2U1kZLipXHkhbnVYSuqo6m75i2h4nhQy48pfyqQtGT7VQUtNd8/DN2USi00AS7zm6r+mLnMMj1) Tj
+T*
+(/txmMMtkm6TmYAQdde6HMEpkrme7NgEc/0mhSA0RhUcpa2NGHb3bNR1qAe1BLjmLQMvFvfMojAMOcNRvr3v2jImguz6W25zacU7sqmiXKB2vtR) Tj
+T*
+(9NRH10aq2+QgUyHMqxpQfblE6y2lfFVUgLnDbKV5b/DizKgePcbcN3DKdBG3SnAxRPxMe5D4H77/vztuC/8qyTXN15+xtpZkiTxfwAQVzf+rOJ) Tj
+T*
+(xTKY+QthNx1g==) Tj
+ET
+
+endstream
+endobj
+8 0 obj
+<<
+/Length 1462
+>>
+stream
+BT
+/F2 12 Tf
+0 0.50196 1 rg
+32 80.31912 Td
+(Detalle) Tj
+ET
+/F1 8.5 Tf
+0 0 0 rg
+30 70.31912 m
+820 70.31912 l
+S
+30 55.31912 m
+820 55.31912 l
+S
+30 40.31912 m
+820 40.31912 l
+S
+30 25.31912 m
+820 25.31912 l
+S
+30 10.31912 m
+820 10.31912 l
+S
+30 70.31912 m
+30 10.31912 l
+S
+60 70.31912 m
+60 10.31912 l
+S
+500 70.31912 m
+500 10.31912 l
+S
+750 70.31912 m
+750 10.31912 l
+S
+800 70.31912 m
+800 10.31912 l
+S
+820 70.31912 m
+820 10.31912 l
+S
+BT
+32 60.36262 Td
+<4EB0> Tj
+ET
+BT
+62 60.36262 Td
+(Documento) Tj
+ET
+BT
+502 60.36262 Td
+(Resultado/Resumen) Tj
+ET
+BT
+752 60.36262 Td
+(T) Tj
+ET
+BT
+802 60.36262 Td
+(E) Tj
+ET
+BT
+0 0 0 rg
+32 45.36262 Td
+(1) Tj
+ET
+BT
+62 45.36262 Td
+(...\\LENOVO\\Documents\\CEIGRAS\\certificados\\signed\\Certificado_FLAVIO_LOZANO_ISLA.pdf) Tj
+ET
+BT
+502 45.36262 Td
+(HKXlX3LfeZS9MwdwnHBoG5K2MIAo/mF/FbvJL8O9elw=) Tj
+ET
+BT
+752 45.36262 Td
+(220,1 KB) Tj
+ET
+BT
+802 45.36262 Td
+(OK) Tj
+ET
+BT
+0 0 0 rg
+32 30.36262 Td
+(2) Tj
+ET
+BT
+62 30.36262 Td
+(...ocuments\\CEIGRAS\\certificados\\signed\\Certificado_FRANCISCO_GUEVARA_FERN_NDEZ.pdf) Tj
+ET
+BT
+502 30.36262 Td
+(qEgh3z5BkQgkwDkd+3y/Ed7LBjzpocro+1VrqILfdGo=) Tj
+ET
+BT
+752 30.36262 Td
+(220,7 KB) Tj
+ET
+BT
+802 30.36262 Td
+(OK) Tj
+ET
+BT
+0 0 0 rg
+32 15.36262 Td
+(3) Tj
+ET
+BT
+62 15.36262 Td
+(...\\Documents\\CEIGRAS\\certificados\\signed\\Certificado_GRETCHELL_GUIOPP_SAAVEDRA.pdf) Tj
+ET
+BT
+502 15.36262 Td
+(jtDlzDp/GNieQEt0NVlGSjcgCpIkLNDbWNpJe7jLUs4=) Tj
+ET
+BT
+752 15.36262 Td
+(220,5 KB) Tj
+ET
+BT
+802 15.36262 Td
+(OK) Tj
+ET
+
+endstream
+endobj
+9 0 obj
+<<
+/Font 13 0 R
+>>
+endobj
+10 0 obj
+<<
+/Length 2421
+>>
+stream
+/F1 8.5 Tf
+30 565.27563 m
+820 565.27563 l
+S
+30 550.27563 m
+820 550.27563 l
+S
+30 535.27563 m
+820 535.27563 l
+S
+30 520.27563 m
+820 520.27563 l
+S
+30 505.27563 m
+820 505.27563 l
+S
+30 490.27563 m
+820 490.27563 l
+S
+30 475.27563 m
+820 475.27563 l
+S
+30 460.27563 m
+820 460.27563 l
+S
+30 565.27563 m
+30 460.27563 l
+S
+60 565.27563 m
+60 460.27563 l
+S
+500 565.27563 m
+500 460.27563 l
+S
+750 565.27563 m
+750 460.27563 l
+S
+800 565.27563 m
+800 460.27563 l
+S
+820 565.27563 m
+820 460.27563 l
+S
+BT
+32 555.31915 Td
+<4EB0> Tj
+ET
+BT
+62 555.31915 Td
+(Documento) Tj
+ET
+BT
+502 555.31915 Td
+(Resultado/Resumen) Tj
+ET
+BT
+752 555.31915 Td
+(T) Tj
+ET
+BT
+802 555.31915 Td
+(E) Tj
+ET
+BT
+0 0 0 rg
+32 540.31915 Td
+(4) Tj
+ET
+BT
+62 540.31915 Td
+(...ocuments\\CEIGRAS\\certificados\\signed\\Certificado_LUIS_MIGUEL_CARLOS_VALLEJOS.pdf) Tj
+ET
+BT
+502 540.31915 Td
+(XqMb7GXs5m4tw7WQCqLpgI0NPPFzHR/jj/QDX26Fb4M=) Tj
+ET
+BT
+752 540.31915 Td
+(220,6 KB) Tj
+ET
+BT
+802 540.31915 Td
+(OK) Tj
+ET
+BT
+0 0 0 rg
+32 525.31915 Td
+(5) Tj
+ET
+BT
+62 525.31915 Td
+(...\\LENOVO\\Documents\\CEIGRAS\\certificados\\signed\\Certificado_SALOM__TOMANGUILLA.pdf) Tj
+ET
+BT
+502 525.31915 Td
+(FJwWLGUZEayeJuJ41PNq4r0f8FbocWasVr//0FvFEk8=) Tj
+ET
+BT
+752 525.31915 Td
+(220,6 KB) Tj
+ET
+BT
+802 525.31915 Td
+(OK) Tj
+ET
+BT
+0 0 0 rg
+32 510.31915 Td
+(6) Tj
+ET
+BT
+62 510.31915 Td
+(...sers\\LENOVO\\Documents\\CEIGRAS\\certificados\\signed\\Certificado_SAMUEL_MENDOZA.pdf) Tj
+ET
+BT
+502 510.31915 Td
+(rgg7hlDwtgLGf4Czxlqc+a+z9EiHrYGMzSaytp700G0=) Tj
+ET
+BT
+752 510.31915 Td
+(220,4 KB) Tj
+ET
+BT
+802 510.31915 Td
+(OK) Tj
+ET
+BT
+0 0 0 rg
+32 495.31915 Td
+(7) Tj
+ET
+BT
+62 495.31915 Td
+(...sers\\LENOVO\\Documents\\CEIGRAS\\certificados\\signed\\Certificado_SILVANA_VARGAS.pdf) Tj
+ET
+BT
+502 495.31915 Td
+(BHK0E7XLD9XhwJ9kiATXn16+d9vQt6uaAIYsmdJpV/s=) Tj
+ET
+BT
+752 495.31915 Td
+(220,3 KB) Tj
+ET
+BT
+802 495.31915 Td
+(OK) Tj
+ET
+BT
+0 0 0 rg
+32 480.31915 Td
+(8) Tj
+ET
+BT
+62 480.31915 Td
+(...cuments\\CEIGRAS\\certificados\\signed\\Certificado_VICTOR_HUGO_BALDERA_CHAPO_AN.pdf) Tj
+ET
+BT
+502 480.31915 Td
+(Z9gx9T/1NUBRYMLJHixmLCsHYPWC/kjr8HyFh2N7Lso=) Tj
+ET
+BT
+752 480.31915 Td
+(220,8 KB) Tj
+ET
+BT
+802 480.31915 Td
+(OK) Tj
+ET
+BT
+0 0 0 rg
+32 465.31915 Td
+(9) Tj
+ET
+BT
+62 465.31915 Td
+(...LENOVO\\Documents\\CEIGRAS\\certificados\\signed\\Certificado_WAGNER_MEZA_MAICELO.pdf) Tj
+ET
+BT
+502 465.31915 Td
+(GkDAx3e89808anG5aBZXgpbXGNO6iOBi1RsuHSPsc+Q=) Tj
+ET
+BT
+752 465.31915 Td
+(220,5 KB) Tj
+ET
+BT
+802 465.31915 Td
+(OK) Tj
+ET
+
+endstream
+endobj
+11 0 obj
+<<
+/Length 1035
+>>
+stream
+BT
+/F2 12 Tf
+0 0.50196 1 rg
+32 430.31915 Td
+(Resumen) Tj
+ET
+/F1 8.5 Tf
+0 0 0 rg
+BT
+/F2 11 Tf
+32 410.36264 Td
+(Fecha y hora de inicio: ) Tj
+ET
+BT
+/F3 11 Tf
+282 410.36264 Td
+(28/05/2026 15:40:56-0500) Tj
+ET
+BT
+/F2 11 Tf
+32 395.36264 Td
+(Fecha y hora de fin: ) Tj
+ET
+BT
+/F3 11 Tf
+282 395.36264 Td
+(28/05/2026 15:40:58-0500) Tj
+ET
+BT
+/F2 11 Tf
+32 380.36264 Td
+<447572616369F36E3A20> Tj
+ET
+BT
+/F3 11 Tf
+282 380.36264 Td
+(1 segundos, 285 milisegundos.) Tj
+ET
+BT
+/F2 11 Tf
+32 365.36264 Td
+(Cantidad total de documentos procesados: ) Tj
+ET
+BT
+/F3 11 Tf
+282 365.36264 Td
+(9) Tj
+ET
+BT
+/F2 11 Tf
+32 350.36264 Td
+<202020204EB0206465206F7065726163696F6E65732066696E616C697A616461733A20> Tj
+ET
+BT
+/F3 11 Tf
+282 350.36264 Td
+(9) Tj
+ET
+BT
+/F2 11 Tf
+32 335.36264 Td
+<202020204EB0206465206F7065726163696F6E6573206E6F2066696E616C697A616461733A20> Tj
+ET
+BT
+/F3 11 Tf
+282 335.36264 Td
+(0) Tj
+ET
+BT
+/F2 11 Tf
+32 320.36264 Td
+<54616D61F16F20746F74616C20646520646F63756D656E746F732070726F63657361646F733A20> Tj
+ET
+BT
+/F3 11 Tf
+282 320.36264 Td
+(1,9 MB) Tj
+ET
+
+endstream
+endobj
+12 0 obj
+<<
+/Font 14 0 R
+>>
+endobj
+13 0 obj
+<<
+/F1 15 0 R
+/F2 16 0 R
+/F3 17 0 R
+>>
+endobj
+14 0 obj
+<<
+/F1 15 0 R
+/F2 16 0 R
+/F3 17 0 R
+>>
+endobj
+15 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica
+/Encoding /WinAnsiEncoding
+>>
+endobj
+16 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica-Bold
+/Encoding /WinAnsiEncoding
+>>
+endobj
+17 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Courier
+/Encoding /WinAnsiEncoding
+>>
+endobj
+xref
+0 18
+0000000000 65535 f
+0000000015 00000 n
+0000000289 00000 n
+0000000078 00000 n
+0000000352 00000 n
+0000000485 00000 n
+0000000615 00000 n
+0000000880 00000 n
+0000004295 00000 n
+0000005811 00000 n
+0000005845 00000 n
+0000008321 00000 n
+0000009411 00000 n
+0000009446 00000 n
+0000009501 00000 n
+0000009556 00000 n
+0000009654 00000 n
+0000009757 00000 n
+trailer
+<<
+/Root 1 0 R
+/Info 3 0 R
+/ID [<758F7894192B3AAC5A75B0DC394114AC> <758F7894192B3AAC5A75B0DC394114AC>]
+/Size 18
+>>
+startxref
+9853
+%%EOF
