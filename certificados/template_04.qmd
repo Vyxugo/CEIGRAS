@@ -1,0 +1,136 @@
+---
+title: ""
+format: 
+  pdf:
+    keep-tex: true
+    pdf-engine: lualatex
+params:
+  participante: "Nombre del participante"
+header-includes:
+  - \usepackage{graphicx}
+  - \usepackage{geometry}
+  - \usepackage{ragged2e}
+  - \geometry{a4paper, margin=3cm}
+  - \usepackage[utf8]{inputenc}
+  - \usepackage[T1]{fontenc}
+  - \pagestyle{empty}
+---
+
+```{r generador, include=FALSE}
+
+options(knitr.duplicate.label = "allow")
+
+library(googlesheets4)
+library(rmarkdown)
+library(pdftools)
+library(fs)
+library(glue)
+library(dplyr)
+
+if(params$participante == "Nombre del participante") {
+  
+  sheet_url <- "https://docs.google.com/spreadsheets/d/1wruOysAqRKvsWfm0AI0NINHRfSaNwC_ZDoEhJT_2jBo/edit#gid=1482348962"
+  
+  data <- read_sheet(sheet_url, sheet = "training")
+  
+  data_filtrada <- data %>%
+    filter(nc == 2) %>%
+    mutate(Instructor = toupper(Instructor))
+  
+  nombres <- data_filtrada$Instructor
+  
+  output_dir <- "IT N° 02-2026"
+  dir_create(output_dir)
+  
+  for(nombre in nombres){
+    
+    output_file <- path(
+      output_dir,
+      glue("Certificado{gsub('[^A-Za-z0-9]', '_', nombre)}.pdf")
+    )
+    
+    render(
+      input = "template_04.qmd",
+      output_file = output_file,
+      params = list(participante = nombre),
+      envir = new.env()
+    )
+    
+    cat(glue("Generado: {output_file}\n"))
+  }
+  
+  knitr::knit_exit()
+}
+```
+
+\fontsize{13}{17}\selectfont
+
+\begin{minipage}[c]{0.55\textwidth}
+  \includegraphics[width=\textwidth]{untrm.png}
+\end{minipage}
+
+\vspace{0.6cm}
+\noindent\rule{\textwidth}{0.3pt}
+\vspace{0.5cm}
+
+\begin{center}
+  {\fontsize{30}{34}\selectfont \textbf{CERTIFICADO}}
+\end{center}
+
+\vspace{0.5cm}
+
+\begin{flushright}
+  Chachapoyas, 28 de mayo del 2026
+\end{flushright}
+
+\vspace{0.1 cm}
+
+\begin{justify}
+Se otorga la presente constancia a:
+\end{justify}
+
+\vspace{0.1cm}
+
+\begin{center}
+  \fontsize{19}{23}\selectfont \textbf{`r params$participante`}
+\end{center}
+
+\vspace{0.3cm}
+\fontsize{13}{17}\selectfont
+
+\begin{justify}
+por su participación como ponente en el:
+\end{justify}
+
+\vspace{0.1cm}
+
+\begin{center}
+  \textbf{``Encuentro regional de jóvenes de Amazonas:\\[0.2cm]
+  construyendo resiliencia frente al cambio climático desde la agroecología”}
+\end{center}
+
+\vspace{0.3cm}
+
+\begin{justify}
+Organizado por la Asociación Nacional de Productores Ecológicos (ANPE Perú) y la Asociación de Jóvenes Líderes Agroecológicos de Amazonas (ARPEAM), con el apoyo de la Comisión de Proyección Social, Extensión Cultural y Responsabilidad Social Universitaria de la Facultad de Ingeniería y Ciencias Agrarias de la Universidad Nacional Toribio Rodríguez de Mendoza de Amazonas, realizado el día 08 de marzo de 2026, en el Salón Comunal Señor de Gualamita, distrito de Lamud, provincia de Luya, región Amazonas.
+\end{justify}
+
+\vspace{2cm}
+
+\begin{center}
+  \noindent\rule{7cm}{0.4pt} \\[0.3cm]
+  \textbf{Flavio Lozano Isla} \\[0.1cm]
+  \fontsize{8}{10}\selectfont \textbf {Comisión de Proyección Social, Extensión Cultural y Responsabilidad Social\\[0.1cm]
+  Facultad de Ingeniería y Ciencias Agrarias\\[0.1cm]
+  Universidad Nacional Toribio Rodríguez de Mendoza de Amazonas}
+\end{center}
+
+\vfill
+
+\begin{flushright}
+  {\footnotesize Res. N° 41-2026-UNTRM-FICA}
+\end{flushright}
+
+
+
+
