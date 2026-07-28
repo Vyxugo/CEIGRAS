@@ -44,10 +44,6 @@
         src="https://github.com/Victor-Hugo-Baldera/CEIGRAS/blob/main/docs/image/blue.png?raw=true"
         alt="Logo CEIGRAS"
         class="logo"
-        onclick="window.location.href='index.html'"
-        role="link"
-        tabindex="0"
-        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); window.location.href='index.html';}"
       >
 
  <!-- BOTÓN MENÚ HAMBURGUESA -->
@@ -107,22 +103,28 @@ document.addEventListener("DOMContentLoaded", () => {
     return "";
   }
 
+  // getFlag() ahora vive en script.js (cargado al final del <body>)
+
   function buildCard(person) {
     const nombre = person.nombre || "";
     const linkedin = person.linkedin || "#";
     const google = person.googleScholar || "";
     const github = person.github || "";
     const foto = person.foto || "https://via.placeholder.com/150";
+    const pais = person.pais || "";
+    const bandera = getFlag(pais);
+    console.log("DEBUG →", nombre, "| pais:", JSON.stringify(pais), "| bandera:", bandera || "(vacía)");
 
     return `
       <div class="team-card">
         <a href="${linkedin}" target="_blank" rel="noopener noreferrer">
           <img src="${foto}" alt="${nombre}">
         </a>
-        <p>${nombre}</p>
+        <p class="team-name">${nombre}</p>
         <div class="social-links">
-          ${google ? `<a href="${google}" class="google" target="_blank" rel="noopener noreferrer"><i class="fas fa-graduation-cap"></i></a>` : ""}
-          ${github ? `<a href="${github}" class="github" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>` : ""}
+          ${google ? `<a href="${google}" class="google" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>` : ""}
+          ${github ? `<a href="${github}" class="github" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>` : ""}
+          ${bandera ? `<span class="team-flag">${bandera}</span>` : ""}
         </div>
       </div>
     `;
@@ -165,13 +167,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const data = JSON.parse(match[1]);
 
+      const headers = data.table.cols.map(col => String(clean(col.label || col.id || "")).trim().toLowerCase());
+      const countryIndex = headers.findIndex(label => /country|pais|pa[ií]s/.test(label));
+      const safeCountryIndex = countryIndex >= 0 ? countryIndex : 6;
+
       const people = data.table.rows.map(row => ({
-        nombre: clean(row.c[0]),          // A
-        funcion: clean(row.c[1]),         // B
-        linkedin: clean(row.c[2]),        // C
-        googleScholar: clean(row.c[3]),   // D
-        github: clean(row.c[4]),          // E
-        foto: clean(row.c[5])             // F
+        nombre: clean(row.c[0]),
+        funcion: clean(row.c[1]),
+        linkedin: clean(row.c[2]),
+        googleScholar: clean(row.c[3]),
+        github: clean(row.c[4]),
+        foto: clean(row.c[5]),
+        pais: clean(row.c[safeCountryIndex])
       }))
       .filter(person => person.nombre && person.funcion);
 
@@ -354,5 +361,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 </script>
+
+<script src="script.js"></script>
 </body>
 </html>

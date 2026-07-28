@@ -46,3 +46,22 @@ if (images.length && modal && modalImg) {
     }
   });
 }
+
+function getFlag(pais) {
+  const key = String(pais || "")
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, ""); // quita tildes
+
+  if (key.includes("peru")) return "🇵🇪";
+  if (key.includes("usa") || key.includes("us") || key.includes("eua") || key.includes("united states") || key.includes("estados unidos") || key.includes("estados unidos de america")) return "🇺🇸";
+  if (key.includes("mexico") || key.includes("mex")) return "🇲🇽";
+  if (key.includes("colombia")) return "🇨🇴";
+  if (key.includes("argentina")) return "🇦🇷";
+  if (key.includes("chile")) return "🇨🇱";
+  if (key.includes("ecuador")) return "🇪🇨";
+  if (key.includes("bolivia")) return "🇧🇴";
+  if (key.includes("brasil") || key.includes("brazil")) return "🇧🇷";
+  return "";
+}
