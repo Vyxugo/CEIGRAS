@@ -39,7 +39,7 @@ if(params$participante == "Nombre del participante") {
   
   nombres <- data_filtrada$Instructor
   
-  output_dir <- "TEMPLATE"
+  output_dir <- "example"
   dir_create(output_dir)
   
   for(nombre in nombres){
@@ -50,7 +50,7 @@ if(params$participante == "Nombre del participante") {
     )
     
     render(
-      input = "template.qmd",
+      input = "example.qmd",
       output_file = output_file,
       params = list(participante = nombre),
       envir = new.env()
