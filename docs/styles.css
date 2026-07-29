@@ -650,6 +650,15 @@ section h4,
     margin-left: 0;
   }
 
+  /* Bajar logo y hamburguesa en pantallas pequeñas (afecta todas las páginas) */
+  .logo {
+    margin-top: 18px;
+  }
+
+  .menu-toggle {
+    margin-top: 14px;
+  }
+
   .navbar ul {
     flex-wrap: wrap;
     justify-content: center;
@@ -752,6 +761,7 @@ section h4,
   .final-image img {
     height: 220px;
   }
+
 }
 
 /* TEAM */
