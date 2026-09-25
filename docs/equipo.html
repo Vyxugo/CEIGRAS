@@ -137,6 +137,11 @@
     }
   </script>
 
+  <!-- Twemoji: dibuja las banderas como imagen real en vez de depender de la fuente
+       de emoji del sistema operativo (en Windows de escritorio suele faltar y
+       muestra las letras del código de país en lugar de la bandera). -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/twemoji.min.js" crossorigin="anonymous"></script>
+
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const SHEET_ID = "1wruOysAqRKvsWfm0AI0NINHRfSaNwC_ZDoEhJT_2jBo";
@@ -231,6 +236,17 @@
             buildSection("Administración", grupos["Administración"]) +
             buildSection("Pasantes", grupos["Pasantes"]) ||
             '<div class="container"><p>No hay equipo para mostrar.</p></div>';
+
+          // Convierte cada emoji de bandera dentro de #team-sections en una
+          // imagen PNG real de Twemoji, así se ve igual en cualquier
+          // sistema operativo o navegador.
+          if (window.twemoji) {
+            twemoji.parse(container, {
+              folder: "svg",
+              ext: ".svg",
+              className: "team-flag-img"
+            });
+          }
         } catch (error) {
           console.error("Error cargando equipo:", error);
           container.innerHTML = '<div class="container"><p>No se pudo cargar el equipo.</p></div>';

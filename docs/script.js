@@ -82,20 +82,25 @@ function shareOn(network) {
 // Banderas de país para las tarjetas del equipo (equipo.html)
 // ---------------------------------------------------------
 function getFlag(pais) {
-  const key = String(pais || "")
+  const value = String(pais || "")
     .trim()
     .toLowerCase()
     .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, ""); // quita tildes
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\./g, "")
+    .replace(/[^a-z]/g, "");
 
-  if (key.includes("peru")) return "🇵🇪";
-  if (key.includes("usa") || key.includes("us") || key.includes("eua") || key.includes("united states") || key.includes("estados unidos") || key.includes("estados unidos de america")) return "🇺🇸";
-  if (key.includes("mexico") || key.includes("mex")) return "🇲🇽";
-  if (key.includes("colombia")) return "🇨🇴";
-  if (key.includes("argentina")) return "🇦🇷";
-  if (key.includes("chile")) return "🇨🇱";
-  if (key.includes("ecuador")) return "🇪🇨";
-  if (key.includes("bolivia")) return "🇧🇴";
-  if (key.includes("brasil") || key.includes("brazil")) return "🇧🇷";
+  if (!value) return "";
+
+  if (["pe", "peru", "peruan"].includes(value) || value.includes("peru")) return "🇵🇪";
+  if (["us", "usa", "eeuu", "eua", "unitedstates", "estadosunidos", "estadosunidosdeamerica"].includes(value) || value.includes("usa") || value.includes("eeuu") || value.includes("eua") || value.includes("estadosunidos")) return "🇺🇸";
+  if (["mx", "mex", "mexico"].includes(value) || value.includes("mex")) return "🇲🇽";
+  if (["co", "colombia"].includes(value) || value.includes("colombia")) return "🇨🇴";
+  if (["ar", "argentina"].includes(value) || value.includes("argentina")) return "🇦🇷";
+  if (["cl", "chile"].includes(value) || value.includes("chile")) return "🇨🇱";
+  if (["ec", "ecuador"].includes(value) || value.includes("ecuador")) return "🇪🇨";
+  if (["bo", "bolivia"].includes(value) || value.includes("bolivia")) return "🇧🇴";
+  if (["br", "brasil", "brazil"].includes(value) || value.includes("brasil") || value.includes("brazil")) return "🇧🇷";
+
   return "";
 }
