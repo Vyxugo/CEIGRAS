@@ -5,7 +5,7 @@ format:
     keep-tex: true
     pdf-engine: lualatex
 params:
-  participante: "Nombre del participante"
+  participante: "Judith Roxana Marón Coaquira"
 header-includes:
   - \usepackage{graphicx}
   - \usepackage{geometry}
@@ -27,37 +27,36 @@ library(fs)
 library(glue)
 library(dplyr)
 
-if(params$participante == "Nombre del participante") {
+if(params$participante == "Judith Roxana Marón Coaquira") {
   
   sheet_url <- "https://docs.google.com/spreadsheets/d/1wruOysAqRKvsWfm0AI0NINHRfSaNwC_ZDoEhJT_2jBo/edit#gid=1482348962"
   
   data <- read_sheet(sheet_url, sheet = "training")
   
-  data_filtrada <- data %>%
-    filter(nc == 1) %>%
-    mutate(Instructor = toupper(Instructor))
-  
-  nombres <- data_filtrada$Instructor
+  nombre <- data %>%
+    filter(
+      nc == 1,
+      Instructor == "Judith Roxana Marón Coaquira"
+    ) %>%
+    pull(Instructor) %>%
+    toupper()
   
   output_dir <- "IT N° 04-2026"
   dir_create(output_dir)
   
-  for(nombre in nombres){
-    
-    output_file <- path(
-      output_dir,
-      glue("Certificado_{gsub('[^A-Za-z0-9]', '_', nombre)}.pdf")
-    )
-    
-    render(
-      input = "template_02.qmd",
-      output_file = output_file,
-      params = list(participante = nombre),
-      envir = new.env()
-    )
-    
-    cat(glue("Generado: {output_file}\n"))
-  }
+  output_file <- path(
+    output_dir,
+    glue("Certificado_{gsub('[^A-Za-z0-9]', '_', nombre)}.pdf")
+  )
+  
+  render(
+    input = "template_02.qmd",
+    output_file = output_file,
+    params = list(participante = nombre),
+    envir = new.env()
+  )
+  
+  cat(glue("Generado: {output_file}\n"))
   
   knitr::knit_exit()
 }

@@ -4,47 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Publicaciones - CEIGRAS</title>
-
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="icon" href="https://github.com/Victor-Hugo-Baldera/CEIGRAS/blob/main/docs/image/favico-logo.png?raw=true">
+  <link rel="icon" href="https://github.com/Vyxugo/CEIGRAS/blob/main/docs/image/favico-logo.png?raw=true">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
 
   <div class="topbar">
     <div class="topbar-content">
-      <div class="topbar-left">
-        Universidad Nacional Toribio Rodríguez de Mendoza de Amazonas
-      </div>
-
+      <div class="topbar-left">Universidad Nacional Toribio Rodríguez de Mendoza de Amazonas</div>
       <div class="topbar-right">
-        <a href="https://web.facebook.com/untrm.a/?_rdc=1&_rdr" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com/untrmamazonas/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-        <a href="https://x.com/untrm" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i></a>
-        <a href="https://www.youtube.com/@untrm" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+        <a href="https://web.facebook.com/untrm.a/?_rdc=1&_rdr" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/untrmamazonas/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://x.com/untrm" target="_blank" rel="noopener noreferrer" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://www.youtube.com/@untrm" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
       </div>
     </div>
   </div>
 
   <header class="header">
     <div class="container header-content">
-      <img
-        src="https://github.com/Victor-Hugo-Baldera/CEIGRAS/blob/main/docs/image/blue.png?raw=true"
-        alt="Logo CEIGRAS"
-        class="logo"
-        onclick="window.location.href='index.html'"
-        role="link"
-        tabindex="0"
-        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); window.location.href='index.html';}"
-      >
-
-      <!-- BOTÓN MENÚ HAMBURGUESA -->
-      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
-        <i class="fas fa-bars"></i>
-      </button>
-
+      <img src="https://github.com/Vyxugo/CEIGRAS/blob/main/docs/image/blue.png?raw=true" alt="Logo CEIGRAS - UNTRM" class="logo">
+      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú"><i class="fas fa-bars"></i></button>
       <nav class="navbar" id="navbar">
         <ul>
           <li><a href="index.html">Inicio</a></li>
@@ -58,190 +40,23 @@
     </div>
   </header>
 
- <section class="page-hero">
-  <div class="container">
-    <h1>Publicaciones</h1>
-    <p>
-      Consulta artículos, revistas, boletines y materiales de divulgación científica vinculados a CEIGRAS y la UNTRM.
-    </p>
-  </div>
-</section>
+  <section class="page-hero">
+    <div class="container">
+      <h1>Publicaciones</h1>
+      <p>Consulta artículos, revistas, boletines y materiales de divulgación científica vinculados a CEIGRAS y la UNTRM.</p>
+    </div>
+  </section>
 
-<section class="journal-section">
-  <div class="container">
-    <div class="journal-grid" id="publications-grid"></div>
-  </div>
-</section>
-<script>
-  const SHEET_ID = "1wruOysAqRKvsWfm0AI0NINHRfSaNwC_ZDoEhJT_2jBo";
-  const SHEET_NAME = "publications";
-
-  const MONTHS = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
-  const MONTH_MAP = {
-    ene: 0, feb: 1, mar: 2, abr: 3, may: 4, jun: 5,
-    jul: 6, ago: 7, sep: 8, oct: 9, nov: 10, dic: 11
-  };
-
-  function parseDate(value) {
-    if (!value) return new Date(0);
-
-    const text = String(value).trim().toLowerCase();
-
-    // nov-27-2025 / dic-04-2025 / ene-01-2026
-    let parts = text.split("-");
-    if (parts.length === 3 && MONTH_MAP[parts[0]] !== undefined) {
-      return new Date(
-        parseInt(parts[2], 10),
-        MONTH_MAP[parts[0]],
-        parseInt(parts[1], 10)
-      );
-    }
-
-    // 2026-01-01
-    const isoMatch = text.match(/^(\d{4})-(\d{2})-(\d{2})$/);
-    if (isoMatch) {
-      return new Date(
-        parseInt(isoMatch[1], 10),
-        parseInt(isoMatch[2], 10) - 1,
-        parseInt(isoMatch[3], 10)
-      );
-    }
-
-    // 01/01/2026
-    parts = text.split("/");
-    if (parts.length === 3) {
-      return new Date(
-        parseInt(parts[2], 10),
-        parseInt(parts[1], 10) - 1,
-        parseInt(parts[0], 10)
-      );
-    }
-
-    const d = new Date(text);
-    if (!isNaN(d.getTime())) return d;
-
-    return new Date(0);
-  }
-
-  function formatDate(value) {
-    const d = parseDate(value);
-
-    if (isNaN(d.getTime()) || d.getTime() === 0) {
-      return { month: "", day: "", year: "" };
-    }
-
-    return {
-      month: MONTHS[d.getMonth()],
-      day: String(d.getDate()).padStart(2, "0"),
-      year: String(d.getFullYear())
-    };
-  }
-
-  function cleanValue(cell) {
-    if (!cell) return "";
-    return String(cell.f ?? cell.v ?? "").trim();
-  }
-
-  function buildCard(pub) {
-    const f = formatDate(pub.Publication);
-
-    return `
-      <article class="journal-card">
-        <div class="journal-image-wrap">
-          <img
-            src="${pub.image || ""}"
-            alt="${pub.Short_title || "Publicación"}"
-            class="journal-image"
-          >
-
-          <span class="journal-tag">${pub.Journal || ""}</span>
-
-          <div class="journal-date-box">
-            <span class="month">${f.month}</span>
-            <span class="day">${f.day}</span>
-            <span class="year">${f.year}</span>
-          </div>
-        </div>
-
-        <div class="journal-content">
-          <h3>${pub.Short_title || ""}</h3>
-
-          <a
-            href="${pub.DOI || "#"}"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="journal-btn"
-          >
-            Ver Publicación <span>→</span>
-          </a>
-        </div>
-      </article>
-    `;
-  }
-
-  async function loadPublications() {
-    const container = document.getElementById("publications-grid");
-    container.innerHTML = "<p>Cargando publicaciones...</p>";
-
-    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}`;
-
-    try {
-      const response = await fetch(url);
-      const text = await response.text();
-      const json = JSON.parse(text.substring(47).slice(0, -2));
-
-      const headers = json.table.cols.map(col => String(col.label || "").trim());
-
-      const rows = json.table.rows.map(row => {
-        const obj = {};
-
-        headers.forEach((header, index) => {
-          obj[header] = cleanValue(row.c[index]);
-        });
-
-        return obj;
-      });
-
-      console.log("HEADERS:", headers);
-      console.log("ROWS:", rows);
-
-      const normalizedRows = rows.map(item => ({
-        Citation: item["Citation"] || "",
-        Journal: item["Journal"] || "",
-        Publication: item["Publication"] || item["Publication (YYYY-MM-DD)"] || "",
-        Short_title: item["Short_title"] || "",
-        DOI: item["DOI"] || "",
-        image: item["image"] || ""
-      }));
-
-      // Solo exigir lo mínimo necesario
-      const filtered = normalizedRows.filter(item =>
-        item.Short_title && item.DOI
-      );
-
-      filtered.sort((a, b) => parseDate(b.Publication) - parseDate(a.Publication));
-
-      if (!filtered.length) {
-        container.innerHTML = "<p>No hay publicaciones para mostrar.</p>";
-        return;
-      }
-
-      container.innerHTML = filtered.map(buildCard).join("");
-    } catch (error) {
-      console.error("Error cargando publicaciones:", error);
-      container.innerHTML = "<p>No se pudieron cargar las publicaciones.</p>";
-    }
-  }
-
-  loadPublications();
-</script>
+  <section class="journal-section">
+    <div class="container">
+      <div class="journal-grid" id="publications-grid"></div>
+    </div>
+  </section>
 
   <footer class="footer">
     <div class="footer-overlay"></div>
-
     <div class="container footer-content">
       <div class="footer-top">
-
         <div class="footer-column">
           <h4>Explora</h4>
           <ul>
@@ -253,7 +68,6 @@
             <li><a href="germoplasma.html">Germoplasma</a></li>
           </ul>
         </div>
-
         <div class="footer-column">
           <h4>Programa</h4>
           <ul>
@@ -264,7 +78,6 @@
             <li><a href="germoplasma.html">Banco de germoplasma</a></li>
           </ul>
         </div>
-
         <div class="footer-column">
           <h4>Social</h4>
           <ul>
@@ -274,40 +87,137 @@
             <li><a href="https://www.youtube.com/@untrm" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> YouTube</a></li>
           </ul>
         </div>
-
         <div class="footer-column">
           <h4>Contacto</h4>
           <ul>
             <li><a href="https://www.untrm.edu.pe/" target="_blank" rel="noopener noreferrer">Portal UNTRM <i class="fas fa-arrow-up-right-from-square"></i></a></li>
             <li><a href="https://www.google.com/maps/place/Universidad+Nacional+Toribio+Rodr%C3%ADguez+de+Mendoza+de+Amazonas/@-6.2335356,-77.85574,17z/data=!3m1!4b1!4m6!3m5!1s0x91b6ab71f5b27271:0xfe42b2de3efad5e6!8m2!3d-6.2335409!4d-77.8531651!16s%2Fg%2F125_c890p?coh=245189&entry=tts&g_ep=EgoyMDI1MDUxMS4wIPu8ASoJLDEwMjExNDU1SAFQAw%3D%3D&skid=b320fc22-ab5b-4687-818e-54b7d80af6f4" target="_blank" rel="noopener noreferrer">Servicios UNTRM <i class="fas fa-arrow-up-right-from-square"></i></a></li>
             <li><a href="mailto:informes@untrm.edu.pe">Correo UNTRM <i class="fas fa-arrow-up-right-from-square"></i></a></li>
-            <li><a href="tel:(041)477694">Telef. UNTRM <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+            <li><a href="tel:+51041477694">Telef. UNTRM <i class="fas fa-arrow-up-right-from-square"></i></a></li>
           </ul>
         </div>
-
       </div>
-
       <div class="footer-divider"></div>
-
       <div class="footer-bottom">
-        <div class="footer-logo">
-          <img src="https://github.com/Victor-Hugo-Baldera/CEIGRAS/blob/main/docs/image/white.png?raw=true" alt="Logo UNTRM">
-        </div>
-
-        <div class="footer-copy">
-          © 2026 UNTRM. Todos los derechos reservados
-        </div>
+        <div class="footer-logo"><img src="https://github.com/Vyxugo/CEIGRAS/blob/main/docs/image/white.png?raw=true" alt="Logo UNTRM"></div>
+        <div class="footer-copy">© 2026 UNTRM. Todos los derechos reservados</div>
       </div>
     </div>
   </footer>
- <script>
+
+  <script>
     const toggle = document.getElementById("menu-toggle");
     const navbar = document.getElementById("navbar");
-
-    toggle.addEventListener("click", () => {
-      navbar.classList.toggle("active");
-    });
+    toggle.addEventListener("click", () => navbar.classList.toggle("active"));
   </script>
 
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const SHEET_ID = "1wruOysAqRKvsWfm0AI0NINHRfSaNwC_ZDoEhJT_2jBo";
+      const SHEET_NAME = "publications";
+      const MONTHS = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
+      const MONTH_MAP = { ene: 0, feb: 1, mar: 2, abr: 3, may: 4, jun: 5, jul: 6, ago: 7, sep: 8, oct: 9, nov: 10, dic: 11 };
+
+      function parseDate(value) {
+        if (!value) return new Date(0);
+        const text = String(value).trim().toLowerCase();
+
+        let parts = text.split("-");
+        if (parts.length === 3 && MONTH_MAP[parts[0]] !== undefined) {
+          return new Date(parseInt(parts[2], 10), MONTH_MAP[parts[0]], parseInt(parts[1], 10));
+        }
+
+        const isoMatch = text.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+        if (isoMatch) {
+          return new Date(parseInt(isoMatch[1], 10), parseInt(isoMatch[2], 10) - 1, parseInt(isoMatch[3], 10));
+        }
+
+        parts = text.split("/");
+        if (parts.length === 3) {
+          return new Date(parseInt(parts[2], 10), parseInt(parts[1], 10) - 1, parseInt(parts[0], 10));
+        }
+
+        const d = new Date(text);
+        if (!isNaN(d.getTime())) return d;
+        return new Date(0);
+      }
+
+      function formatDate(value) {
+        const d = parseDate(value);
+        if (isNaN(d.getTime()) || d.getTime() === 0) return { month: "", day: "", year: "" };
+        return {
+          month: MONTHS[d.getMonth()],
+          day: String(d.getDate()).padStart(2, "0"),
+          year: String(d.getFullYear())
+        };
+      }
+
+      function cleanValue(cell) {
+        if (!cell) return "";
+        return String(cell.f ?? cell.v ?? "").trim();
+      }
+
+      function buildCard(pub) {
+        const f = formatDate(pub.Publication);
+        return `
+          <article class="journal-card">
+            <div class="journal-image-wrap">
+              <img src="${pub.image || ""}" alt="${pub.Short_title || "Publicación"}" class="journal-image">
+              <span class="journal-tag">${pub.Journal || ""}</span>
+              <div class="journal-date-box">
+                <span class="month">${f.month}</span>
+                <span class="day">${f.day}</span>
+                <span class="year">${f.year}</span>
+              </div>
+            </div>
+            <div class="journal-content">
+              <h3>${pub.Short_title || ""}</h3>
+              <a href="${pub.DOI || "#"}" target="_blank" rel="noopener noreferrer" class="journal-btn">Ver Publicación <span>→</span></a>
+            </div>
+          </article>`;
+      }
+
+      async function loadPublications() {
+        const container = document.getElementById("publications-grid");
+        container.innerHTML = "<p>Cargando publicaciones...</p>";
+
+        try {
+          const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}`;
+          const response = await fetch(url);
+          const text = await response.text();
+          const json = JSON.parse(text.substring(47).slice(0, -2));
+
+          const headers = json.table.cols.map(col => String(col.label || "").trim());
+          const rows = json.table.rows.map(row => {
+            const obj = {};
+            headers.forEach((header, index) => { obj[header] = cleanValue(row.c[index]); });
+            return obj;
+          });
+
+          const normalizedRows = rows.map(item => ({
+            Citation: item["Citation"] || "",
+            Journal: item["Journal"] || "",
+            Publication: item["Publication"] || item["Publication (YYYY-MM-DD)"] || "",
+            Short_title: item["Short_title"] || "",
+            DOI: item["DOI"] || "",
+            image: item["image"] || ""
+          }));
+
+          const filtered = normalizedRows.filter(item => item.Short_title && item.DOI);
+          filtered.sort((a, b) => parseDate(b.Publication) - parseDate(a.Publication));
+
+          container.innerHTML = filtered.length
+            ? filtered.map(buildCard).join("")
+            : "<p>No hay publicaciones para mostrar.</p>";
+        } catch (error) {
+          console.error("Error cargando publicaciones:", error);
+          container.innerHTML = "<p>No se pudieron cargar las publicaciones.</p>";
+        }
+      }
+
+      loadPublications();
+    });
+  </script>
+  <script src="script.js"></script>
 </body>
 </html>

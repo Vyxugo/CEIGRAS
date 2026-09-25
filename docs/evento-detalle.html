@@ -4,49 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Detalle del evento - CEIGRAS</title>
-
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="icon" href="https://github.com/Victor-Hugo-Baldera/CEIGRAS/blob/main/docs/image/favico-logo.png?raw=true">
+  <link rel="icon" href="https://github.com/Vyxugo/CEIGRAS/blob/main/docs/image/favico-logo.png?raw=true">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
 
-  <!-- TOPBAR -->
   <div class="topbar">
     <div class="topbar-content">
-      <div class="topbar-left">
-        Universidad Nacional Toribio Rodríguez de Mendoza de Amazonas
-      </div>
-
+      <div class="topbar-left">Universidad Nacional Toribio Rodríguez de Mendoza de Amazonas</div>
       <div class="topbar-right">
-        <a href="https://web.facebook.com/untrm.a/?_rdc=1&_rdr" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com/untrmamazonas/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-        <a href="https://x.com/untrm" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i></a>
-        <a href="https://www.youtube.com/@untrm" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+        <a href="https://web.facebook.com/untrm.a/?_rdc=1&_rdr" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/untrmamazonas/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://x.com/untrm" target="_blank" rel="noopener noreferrer" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://www.youtube.com/@untrm" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
       </div>
     </div>
   </div>
 
-  <!-- HEADER -->
- <header class="header">
-  <div class="container header-content">
-    <img
-      src="https://github.com/Victor-Hugo-Baldera/CEIGRAS/blob/main/docs/image/blue.png?raw=true"
-      alt="Logo CEIGRAS"
-      class="logo"
-      onclick="window.location.href='index.html'"
-      role="link"
-      tabindex="0"
-      onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); window.location.href='index.html';}"
-    >
-
-    <button class="menu-toggle" id="menu-toggle">
-      <i class="fas fa-bars"></i>
-    </button>
-
-    <nav class="navbar" id="navbar">
+  <header class="header">
+    <div class="container header-content">
+      <img src="https://github.com/Vyxugo/CEIGRAS/blob/main/docs/image/blue.png?raw=true" alt="Logo CEIGRAS - UNTRM" class="logo">
+      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú"><i class="fas fa-bars"></i></button>
+      <nav class="navbar" id="navbar">
         <ul>
           <li><a href="index.html">Inicio</a></li>
           <li><a href="quienes-somos.html">Quienes Somos</a></li>
@@ -59,232 +40,23 @@
     </div>
   </header>
 
-   </section>
-  
-<section class="news-detail-section">
-  <div class="container news-detail-grid">
-
-    <main class="news-main" id="event-detail-main">
-      <p>Cargando evento...</p>
-    </main>
-
-    <aside class="news-sidebar">
-      <h3>Más Noticias</h3>
-      <div class="sidebar-news-list" id="related-events"></div>
-      <a href="eventos.html" class="sidebar-more-link">Ver más noticias</a>
-    </aside>
-
-  </div>
-</section>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const SHEET_ID = "1wruOysAqRKvsWfm0AI0NINHRfSaNwC_ZDoEhJT_2jBo";
-  const SHEET_NAME = "events";
-
-  const MONTH_MAP = {
-    ene: 0, feb: 1, mar: 2, abr: 3, may: 4, jun: 5,
-    jul: 6, ago: 7, sep: 8, oct: 9, nov: 10, dic: 11
-  };
-
-  const MONTHS_FULL = [
-    "enero", "febrero", "marzo", "abril", "mayo", "junio",
-    "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
-  ];
-
-  const MONTHS_SHORT = [
-    "ENE", "FEB", "MAR", "ABR", "MAY", "JUN",
-    "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"
-  ];
-
-  function clean(cell) {
-    if (!cell) return "";
-    return String(cell.f ?? cell.v ?? "").trim();
-  }
-
-  function normalizeText(text) {
-    return String(text || "")
-      .trim()
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "");
-  }
-
-  function parseDate(value) {
-    if (!value) return new Date(0);
-
-    const text = String(value).trim().toLowerCase();
-
-    let parts = text.split("-");
-    if (parts.length === 3 && MONTH_MAP[parts[0]] !== undefined) {
-      return new Date(
-        parseInt(parts[2], 10),
-        MONTH_MAP[parts[0]],
-        parseInt(parts[1], 10)
-      );
-    }
-
-    const isoMatch = text.match(/^(\d{4})-(\d{2})-(\d{2})$/);
-    if (isoMatch) {
-      return new Date(
-        parseInt(isoMatch[1], 10),
-        parseInt(isoMatch[2], 10) - 1,
-        parseInt(isoMatch[3], 10)
-      );
-    }
-
-    parts = text.split("/");
-    if (parts.length === 3) {
-      return new Date(
-        parseInt(parts[2], 10),
-        parseInt(parts[1], 10) - 1,
-        parseInt(parts[0], 10)
-      );
-    }
-
-    const d = new Date(text);
-    if (!isNaN(d.getTime())) return d;
-
-    return new Date(0);
-  }
-
-  function formatLongDate(value) {
-    const d = parseDate(value);
-    if (isNaN(d.getTime()) || d.getTime() === 0) return "";
-    return `${d.getDate()} de ${MONTHS_FULL[d.getMonth()]} de ${d.getFullYear()}`;
-  }
-
-  function formatShortDate(value) {
-    const d = parseDate(value);
-    if (isNaN(d.getTime()) || d.getTime() === 0) return "";
-    return `${String(d.getDate()).padStart(2, "0")} ${MONTHS_SHORT[d.getMonth()]} ${d.getFullYear()}`;
-  }
-
-  function formatParagraphs(text) {
-    if (!text) return "<p>Sin descripción disponible.</p>";
-
-    return String(text)
-      .split(/\n\s*\n|\n/)
-      .filter(p => p.trim())
-      .map(p => `<p>${p.trim()}</p>`)
-      .join("");
-  }
-
-  function getTitleParam() {
-    const params = new URLSearchParams(window.location.search);
-    return params.get("title") || "";
-  }
-
-  function buildMainEvent(event) {
-    return `
-      <h1>${event.Title || ""}</h1>
-
-      <div class="news-author">
-        ${event.Tipo || ""}
-      </div>
-
-      <div class="news-date">
-        ${formatLongDate(event.Fecha)}
-      </div>
-
-      <img
-        src="${event.Image || ""}"
-        alt="${event.Title || "Evento"}"
-        class="news-main-image"
-      >
-
-      <div class="news-text">
-        ${formatParagraphs(event.Description)}
-      </div>
-
-      <div class="news-share">
-        <span>Compartir:</span>
-        <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://wa.me/?text=${encodeURIComponent((event.Title || "") + " " + window.location.href)}" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(event.Title || "")}&url=${encodeURIComponent(window.location.href)}" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i></a>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
-        <a href="mailto:?subject=${encodeURIComponent(event.Title || "")}&body=${encodeURIComponent(window.location.href)}"><i class="fas fa-envelope"></i></a>
-      </div>
-    `;
-  }
-
-  function buildRelatedItem(event) {
-    return `
-      <a href="evento-detalle.html?title=${encodeURIComponent(event.Title || "")}" class="sidebar-news-item">
-        <img src="${event.Image || ""}" alt="${event.Title || ""}">
-        <div>
-          <h4>${event.Title || ""}</h4>
-          <span>${formatShortDate(event.Fecha)}</span>
-        </div>
-      </a>
-    `;
-  }
-
-  async function loadEventDetail() {
-    const main = document.getElementById("event-detail-main");
-    const related = document.getElementById("related-events");
-    const titleParam = getTitleParam();
-
-    try {
-      const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}`;
-      const response = await fetch(url);
-      const text = await response.text();
-
-      const match = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\);/);
-      if (!match) {
-        throw new Error("No se pudo leer la respuesta de Google Sheets");
-      }
-
-      const data = JSON.parse(match[1]);
-
-      const events = data.table.rows.map(row => ({
-        Tipo: clean(row.c[0]),
-        Fecha: clean(row.c[1]),
-        Title: clean(row.c[2]),
-        Description: clean(row.c[3]),
-        Image: clean(row.c[4])
-      }))
-      .filter(item => item.Tipo && item.Fecha && item.Title && item.Image);
-
-      events.sort((a, b) => parseDate(b.Fecha) - parseDate(a.Fecha));
-
-      const currentEvent = events.find(ev =>
-        normalizeText(ev.Title) === normalizeText(titleParam)
-      );
-
-      if (!currentEvent) {
-        main.innerHTML = "<p>No se encontró el evento.</p>";
-        related.innerHTML = "";
-        return;
-      }
-
-      main.innerHTML = buildMainEvent(currentEvent);
-
-      const relatedEvents = events
-        .filter(ev => normalizeText(ev.Title) !== normalizeText(currentEvent.Title))
-        .slice(0, 4);
-
-      related.innerHTML = relatedEvents.map(buildRelatedItem).join("");
-    } catch (error) {
-      console.error("Error cargando detalle del evento:", error);
-      main.innerHTML = "<p>No se pudo cargar el evento.</p>";
-      related.innerHTML = "";
-    }
-  }
-
-  loadEventDetail();
-});
-</script>
-
-
+  <section class="news-detail-section">
+    <div class="container news-detail-grid">
+      <main class="news-main" id="event-detail-main">
+        <p>Cargando evento...</p>
+      </main>
+      <aside class="news-sidebar">
+        <h3>Más Noticias</h3>
+        <div class="sidebar-news-list" id="related-events"></div>
+        <a href="eventos.html" class="sidebar-more-link">Ver más noticias →</a>
+      </aside>
+    </div>
   </section>
-  <!-- FOOTER -->
+
   <footer class="footer">
     <div class="footer-overlay"></div>
-
     <div class="container footer-content">
       <div class="footer-top">
-
         <div class="footer-column">
           <h4>Explora</h4>
           <ul>
@@ -296,7 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
             <li><a href="germoplasma.html">Germoplasma</a></li>
           </ul>
         </div>
-
         <div class="footer-column">
           <h4>Programa</h4>
           <ul>
@@ -307,7 +78,6 @@ document.addEventListener("DOMContentLoaded", () => {
             <li><a href="germoplasma.html">Banco de germoplasma</a></li>
           </ul>
         </div>
-
         <div class="footer-column">
           <h4>Social</h4>
           <ul>
@@ -317,41 +87,169 @@ document.addEventListener("DOMContentLoaded", () => {
             <li><a href="https://www.youtube.com/@untrm" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> YouTube</a></li>
           </ul>
         </div>
-
         <div class="footer-column">
           <h4>Contacto</h4>
           <ul>
             <li><a href="https://www.untrm.edu.pe/" target="_blank" rel="noopener noreferrer">Portal UNTRM <i class="fas fa-arrow-up-right-from-square"></i></a></li>
             <li><a href="https://www.google.com/maps/place/Universidad+Nacional+Toribio+Rodr%C3%ADguez+de+Mendoza+de+Amazonas/@-6.2335356,-77.85574,17z/data=!3m1!4b1!4m6!3m5!1s0x91b6ab71f5b27271:0xfe42b2de3efad5e6!8m2!3d-6.2335409!4d-77.8531651!16s%2Fg%2F125_c890p?coh=245189&entry=tts&g_ep=EgoyMDI1MDUxMS4wIPu8ASoJLDEwMjExNDU1SAFQAw%3D%3D&skid=b320fc22-ab5b-4687-818e-54b7d80af6f4" target="_blank" rel="noopener noreferrer">Servicios UNTRM <i class="fas fa-arrow-up-right-from-square"></i></a></li>
             <li><a href="mailto:informes@untrm.edu.pe">Correo UNTRM <i class="fas fa-arrow-up-right-from-square"></i></a></li>
-            <li><a href="tel:(041)477694">Telef. UNTRM <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+            <li><a href="tel:+51041477694">Telef. UNTRM <i class="fas fa-arrow-up-right-from-square"></i></a></li>
           </ul>
         </div>
-
       </div>
-
       <div class="footer-divider"></div>
-
       <div class="footer-bottom">
-        <div class="footer-logo">
-          <img src="https://github.com/Victor-Hugo-Baldera/CEIGRAS/blob/main/docs/image/white.png?raw=true" alt="Logo UNTRM">
-        </div>
-
-        <div class="footer-copy">
-          © 2026 UNTRM. Todos los derechos reservados
-        </div>
+        <div class="footer-logo"><img src="https://github.com/Vyxugo/CEIGRAS/blob/main/docs/image/white.png?raw=true" alt="Logo UNTRM"></div>
+        <div class="footer-copy">© 2026 UNTRM. Todos los derechos reservados</div>
       </div>
     </div>
   </footer>
-<script>
-  const toggle = document.getElementById("menu-toggle");
-  const navbar = document.getElementById("navbar");
 
-  if (toggle && navbar) {
-    toggle.addEventListener("click", () => {
-      navbar.classList.toggle("active");
+  <script>
+    const toggle = document.getElementById("menu-toggle");
+    const navbar = document.getElementById("navbar");
+    toggle.addEventListener("click", () => navbar.classList.toggle("active"));
+  </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const SHEET_ID = "1wruOysAqRKvsWfm0AI0NINHRfSaNwC_ZDoEhJT_2jBo";
+      const SHEET_NAME = "events";
+      const MONTH_MAP = { ene: 0, feb: 1, mar: 2, abr: 3, may: 4, jun: 5, jul: 6, ago: 7, sep: 8, oct: 9, nov: 10, dic: 11 };
+      const MONTHS_FULL = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+      const MONTHS_SHORT = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
+
+      function clean(cell) {
+        if (!cell) return "";
+        return String(cell.f ?? cell.v ?? "").trim();
+      }
+
+      function normalizeText(text) {
+        return String(text || "").trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      }
+
+      function parseDate(value) {
+        if (!value) return new Date(0);
+        const text = String(value).trim().toLowerCase();
+
+        let parts = text.split("-");
+        if (parts.length === 3 && MONTH_MAP[parts[0]] !== undefined) {
+          return new Date(parseInt(parts[2], 10), MONTH_MAP[parts[0]], parseInt(parts[1], 10));
+        }
+
+        const isoMatch = text.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+        if (isoMatch) {
+          return new Date(parseInt(isoMatch[1], 10), parseInt(isoMatch[2], 10) - 1, parseInt(isoMatch[3], 10));
+        }
+
+        parts = text.split("/");
+        if (parts.length === 3) {
+          return new Date(parseInt(parts[2], 10), parseInt(parts[1], 10) - 1, parseInt(parts[0], 10));
+        }
+
+        const d = new Date(text);
+        if (!isNaN(d.getTime())) return d;
+        return new Date(0);
+      }
+
+      function formatLongDate(value) {
+        const d = parseDate(value);
+        if (isNaN(d.getTime()) || d.getTime() === 0) return "";
+        return `${d.getDate()} de ${MONTHS_FULL[d.getMonth()]} de ${d.getFullYear()}`;
+      }
+
+      function formatShortDate(value) {
+        const d = parseDate(value);
+        if (isNaN(d.getTime()) || d.getTime() === 0) return "";
+        return `${String(d.getDate()).padStart(2, "0")} ${MONTHS_SHORT[d.getMonth()]} ${d.getFullYear()}`;
+      }
+
+      function formatParagraphs(text) {
+        if (!text) return "<p>Sin descripción disponible.</p>";
+        return String(text)
+          .split(/\n\s*\n|\n/)
+          .filter(p => p.trim())
+          .map(p => `<p>${p.trim()}</p>`)
+          .join("");
+      }
+
+      function buildMainEvent(event) {
+        const url = encodeURIComponent(window.location.href);
+        const title = encodeURIComponent(event.Title || "");
+        return `
+          <h1>${event.Title || ""}</h1>
+          <div class="news-author">${event.Tipo || ""}</div>
+          <div class="news-date">${formatLongDate(event.Fecha)}</div>
+          <img src="${event.Image || ""}" alt="${event.Title || "Evento"}" class="news-main-image">
+          <div class="news-text">${formatParagraphs(event.Description)}</div>
+          <div class="news-share">
+            <span>Compartir:</span>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=${url}" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://wa.me/?text=${title}%20${url}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://twitter.com/intent/tweet?text=${title}&url=${url}" target="_blank" rel="noopener noreferrer" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=${url}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="mailto:?subject=${title}&body=${url}" aria-label="Correo"><i class="fas fa-envelope"></i></a>
+          </div>`;
+      }
+
+      function buildRelatedItem(event) {
+        return `
+          <a href="evento-detalle.html?title=${encodeURIComponent(event.Title || "")}" class="sidebar-news-item">
+            <img src="${event.Image || ""}" alt="${event.Title || ""}">
+            <div>
+              <h4>${event.Title || ""}</h4>
+              <span>${formatShortDate(event.Fecha)}</span>
+            </div>
+          </a>`;
+      }
+
+      async function loadEventDetail() {
+        const main = document.getElementById("event-detail-main");
+        const related = document.getElementById("related-events");
+        const titleParam = new URLSearchParams(window.location.search).get("title") || "";
+
+        try {
+          const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}`;
+          const response = await fetch(url);
+          const text = await response.text();
+          const match = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\);/);
+          if (!match) throw new Error("No se pudo leer la respuesta de Google Sheets");
+
+          const data = JSON.parse(match[1]);
+          const events = data.table.rows.map(row => ({
+            Tipo: clean(row.c[0]),
+            Fecha: clean(row.c[1]),
+            Title: clean(row.c[2]),
+            Description: clean(row.c[3]),
+            Image: clean(row.c[4])
+          })).filter(item => item.Tipo && item.Fecha && item.Title && item.Image);
+
+          events.sort((a, b) => parseDate(b.Fecha) - parseDate(a.Fecha));
+
+          const currentEvent = events.find(ev => normalizeText(ev.Title) === normalizeText(titleParam));
+
+          if (!currentEvent) {
+            main.innerHTML = "<p>No se encontró el evento.</p>";
+            related.innerHTML = "";
+            return;
+          }
+
+          main.innerHTML = buildMainEvent(currentEvent);
+          related.innerHTML = events
+            .filter(ev => normalizeText(ev.Title) !== normalizeText(currentEvent.Title))
+            .slice(0, 4)
+            .map(buildRelatedItem)
+            .join("");
+        } catch (error) {
+          console.error("Error cargando detalle del evento:", error);
+          main.innerHTML = "<p>No se pudo cargar el evento.</p>";
+          related.innerHTML = "";
+        }
+      }
+
+      loadEventDetail();
     });
-  }
-</script>
+  </script>
+  <script src="script.js"></script>
 </body>
 </html>

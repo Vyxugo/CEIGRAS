@@ -4,53 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Equipo - CEIGRAS</title>
-
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="icon" href="https://github.com/Victor-Hugo-Baldera/CEIGRAS/blob/main/docs/image/favico-logo.png?raw=true">
+  <link rel="icon" href="https://github.com/Vyxugo/CEIGRAS/blob/main/docs/image/favico-logo.png?raw=true">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
 
-  <!-- TOPBAR -->
   <div class="topbar">
     <div class="topbar-content">
-      <div class="topbar-left">
-        Universidad Nacional Toribio Rodríguez de Mendoza de Amazonas
-      </div>
-
+      <div class="topbar-left">Universidad Nacional Toribio Rodríguez de Mendoza de Amazonas</div>
       <div class="topbar-right">
-        <a href="https://web.facebook.com/untrm.a/?_rdc=1&_rdr" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="https://www.instagram.com/untrmamazonas/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://x.com/untrm" target="_blank" rel="noopener noreferrer" aria-label="X">
-          <i class="fab fa-x-twitter"></i>
-        </a>
-        <a href="https://www.youtube.com/@untrm" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-          <i class="fab fa-youtube"></i>
-        </a>
+        <a href="https://web.facebook.com/untrm.a/?_rdc=1&_rdr" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/untrmamazonas/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://x.com/untrm" target="_blank" rel="noopener noreferrer" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://www.youtube.com/@untrm" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
       </div>
     </div>
   </div>
 
-  <!-- HEADER -->
   <header class="header">
     <div class="container header-content">
-      <img
-        src="https://github.com/Victor-Hugo-Baldera/CEIGRAS/blob/main/docs/image/blue.png?raw=true"
-        alt="Logo CEIGRAS"
-        class="logo"
-      >
-
- <!-- BOTÓN MENÚ HAMBURGUESA -->
-      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
-        <i class="fas fa-bars"></i>
-      </button>
-
+      <img src="https://github.com/Vyxugo/CEIGRAS/blob/main/docs/image/blue.png?raw=true" alt="Logo CEIGRAS - UNTRM" class="logo">
+      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú"><i class="fas fa-bars"></i></button>
       <nav class="navbar" id="navbar">
         <ul>
           <li><a href="index.html">Inicio</a></li>
@@ -64,170 +40,22 @@
     </div>
   </header>
 
-  <!-- HERO DE PÁGINA -->
   <section class="page-hero">
     <div class="container">
-      <h1>EQUIPO CEIGRAS</h1>
-      <p>
-        El CEIGRAS reúne especialistas en investigación, innovación y desarrollo agrícola.
-        Haz clic en las fotos para conocer más sobre el equipo.
-      </p>
+      <h1>Equipo CEIGRAS</h1>
+      <p>El CEIGRAS reúne especialistas en investigación, innovación y desarrollo agrícola. Haz clic en las fotos para conocer más sobre el equipo.</p>
     </div>
   </section>
 
-<div id="team-sections"></div>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const SHEET_ID = "1wruOysAqRKvsWfm0AI0NINHRfSaNwC_ZDoEhJT_2jBo";
-  const SHEET_NAME = "team";
+  <div id="team-sections"></div>
 
-  function clean(cell) {
-    if (!cell) return "";
-    return String(cell.f ?? cell.v ?? "").trim();
-  }
-
-  function normalizeRole(role) {
-    const text = String(role || "")
-      .trim()
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "");
-
-    if (text.includes("coordinador")) return "Investigadores";
-    if (text.includes("investigador")) return "Investigadores";
-    if (text.includes("tesista")) return "Tesistas";
-    if (text.includes("practicante")) return "Practicantes";
-    if (text.includes("administradora")) return "Administración";
-    if (text.includes("pasante")) return "Pasantes";
-
-    return "";
-  }
-
-  // getFlag() ahora vive en script.js (cargado al final del <body>)
-
-  function buildCard(person) {
-    const nombre = person.nombre || "";
-    const linkedin = person.linkedin || "#";
-    const google = person.googleScholar || "";
-    const github = person.github || "";
-    const foto = person.foto || "https://via.placeholder.com/150";
-    const pais = person.pais || "";
-    const bandera = getFlag(pais);
-    console.log("DEBUG →", nombre, "| pais:", JSON.stringify(pais), "| bandera:", bandera || "(vacía)");
-
-    return `
-      <div class="team-card">
-        <a href="${linkedin}" target="_blank" rel="noopener noreferrer">
-          <img src="${foto}" alt="${nombre}">
-        </a>
-        <p class="team-name">${nombre}</p>
-        <div class="social-links">
-          ${google ? `<a href="${google}" class="google" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>` : ""}
-          ${github ? `<a href="${github}" class="github" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>` : ""}
-          ${bandera ? `<span class="team-flag">${bandera}</span>` : ""}
-        </div>
-      </div>
-    `;
-  }
-
-  function buildSection(title, people) {
-    if (!people.length) return "";
-
-    return `
-      <section class="team-section">
-        <div class="container">
-          <h2>${title}</h2>
-          <div class="team-grid">
-            ${people.map(buildCard).join("")}
-          </div>
-        </div>
-      </section>
-    `;
-  }
-
-  async function loadTeam() {
-    const container = document.getElementById("team-sections");
-
-    if (!container) {
-      console.error("No existe #team-sections");
-      return;
-    }
-
-    container.innerHTML = "<p>Cargando equipo...</p>";
-
-    try {
-      const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}`;
-      const response = await fetch(url);
-      const text = await response.text();
-
-      const match = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\);/);
-      if (!match) {
-        throw new Error("No se pudo leer la respuesta de Google Sheets");
-      }
-
-      const data = JSON.parse(match[1]);
-
-      const headers = data.table.cols.map(col => String(clean(col.label || col.id || "")).trim().toLowerCase());
-      const countryIndex = headers.findIndex(label => /country|pais|pa[ií]s/.test(label));
-      const safeCountryIndex = countryIndex >= 0 ? countryIndex : 6;
-
-      const people = data.table.rows.map(row => ({
-        nombre: clean(row.c[0]),
-        funcion: clean(row.c[1]),
-        linkedin: clean(row.c[2]),
-        googleScholar: clean(row.c[3]),
-        github: clean(row.c[4]),
-        foto: clean(row.c[5]),
-        pais: clean(row.c[safeCountryIndex])
-      }))
-      .filter(person => person.nombre && person.funcion);
-
-      const grupos = {
-        "Investigadores": [],
-        "Tesistas": [],
-        "Practicantes": [],
-        "Administración": [],
-        "Pasantes": []
-      };
-
-      people.forEach(person => {
-        const grupo = normalizeRole(person.funcion);
-        if (grupo) {
-          grupos[grupo].push(person);
-        }
-      });
-
-      let html = "";
-      html += buildSection("Investigadores", grupos["Investigadores"]);
-      html += buildSection("Tesistas", grupos["Tesistas"]);
-      html += buildSection("Practicantes", grupos["Practicantes"]);
-      html += buildSection("Administración", grupos["Administración"]);
-      html += buildSection("Pasantes", grupos["Pasantes"]);
-
-      container.innerHTML = html || "<p>No hay equipo para mostrar.</p>";
-    } catch (error) {
-      console.error("Error cargando equipo:", error);
-      container.innerHTML = "<p>No se pudo cargar el equipo.</p>";
-    }
-  }
-
-  loadTeam();
-});
-</script>
-
-</section>
-  <!-- MODAL -->
   <div id="modal" class="modal" onclick="closeModalOutside(event)">
     <div class="modal-content">
       <button class="close" onclick="closeModal()" aria-label="Cerrar">&times;</button>
-
       <h2 id="modal-title"></h2>
-
       <div class="modal-divider"></div>
-
       <div class="modal-body">
         <img id="modal-img" src="" alt="Perfil del equipo">
-
         <div class="modal-text-box">
           <h3>Perfil</h3>
           <p id="modal-text"></p>
@@ -236,13 +64,10 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
   </div>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-overlay"></div>
-
     <div class="container footer-content">
       <div class="footer-top">
-
         <div class="footer-column">
           <h4>Explora</h4>
           <ul>
@@ -254,7 +79,6 @@ document.addEventListener("DOMContentLoaded", () => {
             <li><a href="germoplasma.html">Germoplasma</a></li>
           </ul>
         </div>
-
         <div class="footer-column">
           <h4>Programa</h4>
           <ul>
@@ -265,103 +89,157 @@ document.addEventListener("DOMContentLoaded", () => {
             <li><a href="germoplasma.html">Banco de germoplasma</a></li>
           </ul>
         </div>
-
         <div class="footer-column">
           <h4>Social</h4>
           <ul>
-            <li>
-              <a href="https://web.facebook.com/untrm.a/?_rdc=1&_rdr" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-facebook-f"></i> Facebook
-              </a>
-            </li>
-            <li>
-              <a href="https://www.instagram.com/untrmamazonas/" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-instagram"></i> Instagram
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/untrm" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-x-twitter"></i> X
-              </a>
-            </li>
-            <li>
-              <a href="https://www.youtube.com/@untrm" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-youtube"></i> YouTube
-              </a>
-            </li>
+            <li><a href="https://web.facebook.com/untrm.a/?_rdc=1&_rdr" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+            <li><a href="https://www.instagram.com/untrmamazonas/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a></li>
+            <li><a href="https://x.com/untrm" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i> X</a></li>
+            <li><a href="https://www.youtube.com/@untrm" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> YouTube</a></li>
           </ul>
         </div>
-
         <div class="footer-column">
           <h4>Contacto</h4>
           <ul>
-            <li>
-              <a href="https://www.untrm.edu.pe/" target="_blank" rel="noopener noreferrer">
-                Portal UNTRM <i class="fas fa-arrow-up-right-from-square"></i>
-              </a>
-            </li>
-            <li>
-              <a href="https://www.google.com/maps/place/Universidad+Nacional+Toribio+Rodr%C3%ADguez+de+Mendoza+de+Amazonas/@-6.2335356,-77.85574,17z/data=!3m1!4b1!4m6!3m5!1s0x91b6ab71f5b27271:0xfe42b2de3efad5e6!8m2!3d-6.2335409!4d-77.8531651!16s%2Fg%2F125_c890p?coh=245189&entry=tts&g_ep=EgoyMDI1MDUxMS4wIPu8ASoJLDEwMjExNDU1SAFQAw%3D%3D&skid=b320fc22-ab5b-4687-818e-54b7d80af6f4" target="_blank" rel="noopener noreferrer">
-                Servicios UNTRM <i class="fas fa-arrow-up-right-from-square"></i>
-              </a>
-            </li>
-            <li>
-              <a href="mailto:informes@untrm.edu.pe">
-                Correo UNTRM <i class="fas fa-arrow-up-right-from-square"></i>
-              </a>
-            </li>
-            <li>
-              <a href="tel:(041)477694">
-                Telef. UNTRM <i class="fas fa-arrow-up-right-from-square"></i>
-              </a>
-            </li>
+            <li><a href="https://www.untrm.edu.pe/" target="_blank" rel="noopener noreferrer">Portal UNTRM <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+            <li><a href="https://www.google.com/maps/place/Universidad+Nacional+Toribio+Rodr%C3%ADguez+de+Mendoza+de+Amazonas/@-6.2335356,-77.85574,17z/data=!3m1!4b1!4m6!3m5!1s0x91b6ab71f5b27271:0xfe42b2de3efad5e6!8m2!3d-6.2335409!4d-77.8531651!16s%2Fg%2F125_c890p?coh=245189&entry=tts&g_ep=EgoyMDI1MDUxMS4wIPu8ASoJLDEwMjExNDU1SAFQAw%3D%3D&skid=b320fc22-ab5b-4687-818e-54b7d80af6f4" target="_blank" rel="noopener noreferrer">Servicios UNTRM <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+            <li><a href="mailto:informes@untrm.edu.pe">Correo UNTRM <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+            <li><a href="tel:+51041477694">Telef. UNTRM <i class="fas fa-arrow-up-right-from-square"></i></a></li>
           </ul>
         </div>
-
       </div>
-
       <div class="footer-divider"></div>
-
       <div class="footer-bottom">
-        <div class="footer-logo">
-          <img src="https://github.com/Victor-Hugo-Baldera/CEIGRAS/blob/main/docs/image/white.png?raw=true" alt="Logo UNTRM">
-        </div>
-
-        <div class="footer-copy">
-          © 2026 UNTRM. Todos los derechos reservados
-        </div>
+        <div class="footer-logo"><img src="https://github.com/Vyxugo/CEIGRAS/blob/main/docs/image/white.png?raw=true" alt="Logo UNTRM"></div>
+        <div class="footer-copy">© 2026 UNTRM. Todos los derechos reservados</div>
       </div>
     </div>
   </footer>
- <script>
+
+  <script>
     const toggle = document.getElementById("menu-toggle");
     const navbar = document.getElementById("navbar");
-
-    toggle.addEventListener("click", () => {
-      navbar.classList.toggle("active");
-    });
+    toggle.addEventListener("click", () => navbar.classList.toggle("active"));
   </script>
 
-<script>
-  function openModal(nombre, imagen, descripcion) {
-    document.getElementById("modal-title").innerText = nombre;
-    document.getElementById("modal-img").src = imagen;
-    document.getElementById("modal-text").innerText = descripcion;
-
-    document.getElementById("modal").style.display = "flex";
-  }
-
-  function closeModal() {
-    document.getElementById("modal").style.display = "none";
-  }
-
-  function closeModalOutside(e) {
-    if (e.target.id === "modal") {
-      closeModal();
+  <script>
+    function openModal(nombre, imagen, descripcion) {
+      document.getElementById("modal-title").innerText = nombre;
+      document.getElementById("modal-img").src = imagen;
+      document.getElementById("modal-text").innerText = descripcion;
+      document.getElementById("modal").style.display = "flex";
     }
-  }
-</script>
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+    }
+    function closeModalOutside(e) {
+      if (e.target.id === "modal") closeModal();
+    }
+  </script>
 
-<script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const SHEET_ID = "1wruOysAqRKvsWfm0AI0NINHRfSaNwC_ZDoEhJT_2jBo";
+      const SHEET_NAME = "team";
+
+      function clean(cell) {
+        if (!cell) return "";
+        return String(cell.f ?? cell.v ?? "").trim();
+      }
+
+      function normalizeRole(role) {
+        const text = String(role || "").trim().toLowerCase()
+          .normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        if (text.includes("coordinador")) return "Investigadores";
+        if (text.includes("investigador")) return "Investigadores";
+        if (text.includes("tesista")) return "Tesistas";
+        if (text.includes("practicante")) return "Practicantes";
+        if (text.includes("administradora")) return "Administración";
+        if (text.includes("pasante")) return "Pasantes";
+        return "";
+      }
+
+      function buildCard(person) {
+        const nombre = person.nombre || "";
+        const linkedin = person.linkedin || "#";
+        const google = person.googleScholar || "";
+        const github = person.github || "";
+        const foto = person.foto || "https://via.placeholder.com/150";
+        const bandera = getFlag(person.pais || "");
+
+        return `
+          <div class="team-card">
+            <a href="${linkedin}" target="_blank" rel="noopener noreferrer">
+              <img src="${foto}" alt="${nombre}">
+            </a>
+            <p class="team-name">${nombre}</p>
+            <div class="social-links">
+              ${google ? `<a href="${google}" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>` : ""}
+              ${github ? `<a href="${github}" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>` : ""}
+              ${bandera ? `<span class="team-flag">${bandera}</span>` : ""}
+            </div>
+          </div>`;
+      }
+
+      function buildSection(title, people) {
+        if (!people.length) return "";
+        return `
+          <section class="team-section">
+            <div class="container">
+              <h2>${title}</h2>
+              <div class="team-grid">${people.map(buildCard).join("")}</div>
+            </div>
+          </section>`;
+      }
+
+      async function loadTeam() {
+        const container = document.getElementById("team-sections");
+        container.innerHTML = '<div class="container"><p>Cargando equipo...</p></div>';
+
+        try {
+          const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}`;
+          const response = await fetch(url);
+          const text = await response.text();
+          const match = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\);/);
+          if (!match) throw new Error("No se pudo leer la respuesta de Google Sheets");
+
+          const data = JSON.parse(match[1]);
+          const headers = data.table.cols.map(col => clean({ v: col.label || col.id || "" }).toLowerCase());
+          const countryIndex = headers.findIndex(label => /country|pais|pa[ií]s/.test(label));
+          const safeCountryIndex = countryIndex >= 0 ? countryIndex : 6;
+
+          const people = data.table.rows.map(row => ({
+            nombre: clean(row.c[0]),
+            funcion: clean(row.c[1]),
+            linkedin: clean(row.c[2]),
+            googleScholar: clean(row.c[3]),
+            github: clean(row.c[4]),
+            foto: clean(row.c[5]),
+            pais: clean(row.c[safeCountryIndex])
+          })).filter(p => p.nombre && p.funcion);
+
+          const grupos = { "Investigadores": [], "Tesistas": [], "Practicantes": [], "Administración": [], "Pasantes": [] };
+          people.forEach(p => {
+            const grupo = normalizeRole(p.funcion);
+            if (grupo) grupos[grupo].push(p);
+          });
+
+          container.innerHTML =
+            buildSection("Investigadores", grupos["Investigadores"]) +
+            buildSection("Tesistas", grupos["Tesistas"]) +
+            buildSection("Practicantes", grupos["Practicantes"]) +
+            buildSection("Administración", grupos["Administración"]) +
+            buildSection("Pasantes", grupos["Pasantes"]) ||
+            '<div class="container"><p>No hay equipo para mostrar.</p></div>';
+        } catch (error) {
+          console.error("Error cargando equipo:", error);
+          container.innerHTML = '<div class="container"><p>No se pudo cargar el equipo.</p></div>';
+        }
+      }
+
+      loadTeam();
+    });
+  </script>
+  <script src="script.js"></script>
 </body>
 </html>
