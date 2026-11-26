@@ -34,6 +34,7 @@
           <li><a href="equipo.html">Equipo</a></li>
           <li><a href="eventos.html">Eventos</a></li>
           <li><a href="training.html">Capacitaciones</a></li>
+            <li><a href="laboratorio-lacites.html">Laboratorio</a></li>
           <li><a href="publicaciones.html" class="active">Publicaciones</a></li>
           <li><a href="germoplasma.html">Germoplasma</a></li>
         </ul>
@@ -43,6 +44,7 @@
 
   <section class="page-hero">
     <div class="container">
+      <span class="page-hero-kicker">Producción científica</span>
       <h1>Publicaciones</h1>
       <p>Consulta artículos, revistas, boletines y materiales de divulgación científica vinculados a CEIGRAS y la UNTRM.</p>
     </div>
@@ -66,6 +68,7 @@
             <li><a href="equipo.html">Equipo</a></li>
             <li><a href="eventos.html">Eventos</a></li>
           <li><a href="training.html">Capacitaciones</a></li>
+            <li><a href="laboratorio-lacites.html">Laboratorio</a></li>
             <li><a href="publicaciones.html">Publicaciones</a></li>
             <li><a href="germoplasma.html">Germoplasma</a></li>
           </ul>
@@ -77,6 +80,7 @@
             <li><a href="equipo.html">Equipo de trabajo</a></li>
             <li><a href="eventos.html">Actividades y eventos</a></li>
           <li><a href="training.html">Capacitaciones</a></li>
+            <li><a href="laboratorio-lacites.html">Laboratorio</a></li>
             <li><a href="publicaciones.html">Producción científica</a></li>
             <li><a href="germoplasma.html">Banco de germoplasma</a></li>
           </ul>
@@ -162,20 +166,19 @@
 
       function buildCard(pub) {
         const f = formatDate(pub.Publication);
+        const image = /^https?:\/\//i.test(pub.image || "") ? pub.image : "";
         return `
           <article class="journal-card">
-            <div class="journal-image-wrap">
-              <img src="${pub.image || ""}" alt="${pub.Short_title || "Publicación"}" class="journal-image">
-              <span class="journal-tag">${pub.Journal || ""}</span>
-              <div class="journal-date-box">
-                <span class="month">${f.month}</span>
-                <span class="day">${f.day}</span>
-                <span class="year">${f.year}</span>
-              </div>
+            <div class="journal-image-wrap ${image ? "has-image" : "no-image"}">
+              ${image ? `<img src="${image}" alt="" aria-hidden="true" class="journal-image-backdrop"><img src="${image}" alt="${pub.Short_title || "Publicación"}" class="journal-image">` : '<i class="fas fa-book-open journal-placeholder-icon" aria-hidden="true"></i>'}
             </div>
             <div class="journal-content">
+              <div class="journal-meta">
+                ${pub.Journal ? `<span class="journal-source"><i class="fas fa-bookmark"></i>${pub.Journal}</span>` : ""}
+                ${f.day ? `<span class="journal-date"><i class="far fa-calendar"></i>${f.day} ${f.month.toLowerCase()} ${f.year}</span>` : ""}
+              </div>
               <h3>${pub.Short_title || ""}</h3>
-              <a href="${pub.DOI || "#"}" target="_blank" rel="noopener noreferrer" class="journal-btn">Ver Publicación <span>→</span></a>
+              <a href="${pub.DOI || "#"}" target="_blank" rel="noopener noreferrer" class="journal-btn">Leer publicación <i class="fas fa-arrow-up-right-from-square"></i></a>
             </div>
           </article>`;
       }
